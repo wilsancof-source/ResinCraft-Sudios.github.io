@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Services — Resincraft Studios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;}
+body{background:#080808;color:#e4ddd0;font-family:'DM Sans',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:#0a0a0a;}
+::-webkit-scrollbar-thumb{background:#c8b98a;border-radius:2px;}
+:root{
+  --black:#080808;--dark:#111111;--dark2:#161616;--border:#242424;
+  --subtle:#555555;--muted:#888888;--light:#c0b8a8;--cream:#e4ddd0;--white:#f4f0ea;
+  --gold:#c8b98a;--gold2:#a89870;--gold-dim:#5a4f38;
+  --ff-display:'Bebas Neue',sans-serif;--ff-body:'DM Sans',sans-serif;--ff-mono:'DM Mono',monospace;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:20px 64px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--ff-display);font-size:20px;letter-spacing:3px;color:var(--cream);text-decoration:none;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:36px;align-items:center;}
+.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-cta{background:var(--gold);color:var(--black)!important;padding:11px 24px;font-weight:700!important;letter-spacing:2px!important;}
+.nav-cta:hover{opacity:0.85;}
+/* LANG */
+.lang-wrap{position:relative;}
+.lang-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:7px 14px;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--ff-mono);display:flex;align-items:center;gap:6px;transition:border-color 0.2s,color 0.2s;}
+.lang-btn:hover{border-color:var(--gold);color:var(--gold);}
+.lang-arrow{font-size:8px;transition:transform 0.2s;}
+.lang-wrap.open .lang-arrow{transform:rotate(180deg);}
+.lang-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--dark);border:1px solid var(--border);min-width:140px;z-index:300;flex-direction:column;}
+.lang-wrap.open .lang-dropdown{display:flex;}
+.lang-opt{background:transparent;border:none;color:var(--muted);padding:12px 18px;font-size:12px;text-align:left;cursor:pointer;font-family:var(--ff-body);letter-spacing:1px;transition:background 0.15s,color 0.15s;border-bottom:1px solid var(--border);}
+.lang-opt:last-child{border-bottom:none;}
+.lang-opt:hover{background:var(--dark2);color:var(--cream);}
+.lang-opt.active{color:var(--gold);}
+/* HERO */
+.page-hero{padding:160px 64px 80px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%, rgba(200,185,138,0.04) 0%, transparent 70%);}
+.page-hero-num{position:absolute;right:64px;top:140px;font-family:var(--ff-display);font-size:220px;color:#0f0f0f;line-height:1;pointer-events:none;letter-spacing:-8px;user-select:none;}
+.page-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.page-eyebrow-line{width:36px;height:1px;background:var(--gold);}
+.label{font-family:var(--ff-mono);font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);}
+.page-h1{font-family:var(--ff-display);font-size:clamp(64px,8vw,120px);line-height:0.9;letter-spacing:1px;color:var(--white);margin-bottom:24px;}
+.page-h1 .outline{-webkit-text-stroke:1.5px var(--gold);color:transparent;}
+.page-sub{font-size:18px;font-weight:300;color:var(--light);line-height:1.75;max-width:580px;}
+/* CONTENT */
+.section{padding:100px 64px;}
+.section-label{font-family:var(--ff-mono);font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.section-h2{font-family:var(--ff-display);font-size:clamp(40px,5vw,72px);line-height:0.9;color:var(--white);margin-bottom:0;}
+.section-h2 .gold{color:var(--gold);}
+.section-h2 .outline{-webkit-text-stroke:1px var(--gold);color:transparent;}
+/* SERVICE BLOCKS */
+.svc-block{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;padding:72px 0;border-top:1px solid var(--border);}
+.svc-block:first-child{border-top:none;padding-top:0;}
+.svc-block.reverse{direction:rtl;}
+.svc-block.reverse>*{direction:ltr;}
+.svc-img{background:var(--dark2);border:1px solid var(--border);aspect-ratio:4/3;overflow:hidden;position:relative;}
+.svc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s var(--ease-out);}
+.svc-img:hover img{transform:scale(1.03);}
+.svc-img-label{position:absolute;bottom:16px;left:16px;background:rgba(8,8,8,0.85);border:1px solid var(--border);padding:8px 14px;font-family:var(--ff-mono);font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;backdrop-filter:blur(4px);}
+.svc-num{font-family:var(--ff-display);font-size:80px;color:#111;line-height:1;margin-bottom:-10px;letter-spacing:-2px;}
+.svc-title{font-family:var(--ff-display);font-size:clamp(32px,4vw,52px);color:var(--white);letter-spacing:1px;line-height:0.95;margin-bottom:8px;}
+.svc-subtitle{font-family:var(--ff-mono);font-size:10px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;}
+.svc-body{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:32px;}
+.svc-points{display:flex;flex-direction:column;gap:0;margin-bottom:32px;border-top:1px solid var(--border);}
+.svc-point{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);}
+.svc-point-dot{width:6px;height:6px;background:var(--gold);flex-shrink:0;margin-top:8px;}
+.svc-point-text{font-size:13px;color:var(--light);line-height:1.7;}
+.svc-point-text strong{color:var(--cream);font-weight:600;}
+/* MAINTENANCE ADDON */
+.addon-wrap{background:var(--dark);border:1px solid var(--border);padding:64px;margin-top:80px;position:relative;overflow:hidden;}
+.addon-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+.addon-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.addon-tag{display:inline-block;background:var(--gold);color:var(--black);font-family:var(--ff-mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:5px 12px;margin-bottom:20px;}
+.addon-h3{font-family:var(--ff-display);font-size:clamp(36px,4vw,60px);color:var(--white);line-height:0.9;margin-bottom:20px;letter-spacing:1px;}
+.addon-h3 .gold{color:var(--gold);}
+.addon-body{font-size:15px;color:var(--muted);line-height:1.8;}
+.addon-plans{display:flex;flex-direction:column;gap:1px;background:var(--border);}
+.addon-plan{background:var(--dark2);padding:24px 28px;transition:background 0.2s;}
+.addon-plan:hover{background:#1c1c1c;}
+.addon-plan-name{font-family:var(--ff-display);font-size:20px;color:var(--cream);letter-spacing:2px;margin-bottom:6px;}
+.addon-plan-desc{font-size:13px;color:var(--muted);line-height:1.7;}
+.addon-plan-freq{font-family:var(--ff-mono);font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-top:10px;}
+/* CTA */
+.page-cta{background:var(--black);padding:100px 64px;text-align:center;border-top:1px solid var(--border);}
+.page-cta-h2{font-family:var(--ff-display);font-size:clamp(48px,6vw,88px);color:var(--white);line-height:0.9;margin-bottom:20px;}
+.page-cta-h2 .gold{color:var(--gold);}
+.page-cta-sub{font-size:16px;color:var(--muted);max-width:480px;margin:0 auto 40px;line-height:1.8;}
+.btn-primary{background:var(--gold);color:var(--black);padding:16px 44px;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;display:inline-block;transition:transform 0.2s,opacity 0.2s;font-family:var(--ff-body);}
+.btn-primary:hover{transform:translateY(-2px);opacity:0.87;}
+.btn-secondary{border:1px solid var(--border);color:var(--cream);padding:16px 44px;font-size:12px;font-weight:500;letter-spacing:3px;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:border-color 0.2s,color 0.2s,transform 0.2s;font-family:var(--ff-body);}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+/* FOOTER */
+footer{background:#060606;border-top:1px solid var(--border);padding:48px 64px 32px;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:12px;color:var(--subtle);}
+.footer-back{font-family:var(--ff-mono);font-size:10px;color:var(--gold-dim);letter-spacing:2px;text-decoration:none;}
+.footer-back:hover{color:var(--gold);}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.9s var(--ease-out),transform 0.9s var(--ease-out);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity 0.9s var(--ease-out),transform 0.9s var(--ease-out);}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity 0.9s var(--ease-out),transform 0.9s var(--ease-out);}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
+</style>
+</head>
+<body>
+<nav>
+  <a href="Resincraft Homepage v2.html" class="nav-logo">RESINCRAFT <span>STUDIOS</span></a>
+  <div class="nav-links">
+    <a href="Resincraft Homepage v2.html">Home</a>
+    <a href="services.html" class="active">Services</a>
+    <a href="about.html">About</a>
+    <a href="process.html">Process</a>
+    <div class="lang-wrap" id="langWrap">
+      <button class="lang-btn" id="langBtn">EN <span class="lang-arrow">▾</span></button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-opt active" data-lang="EN">English</button>
+        <button class="lang-opt" data-lang="FR">Français</button>
+        <button class="lang-opt" data-lang="AR">العربية</button>
+        <button class="lang-opt" data-lang="SO">Somali</button>
+      </div>
+    </div>
+    <a href="Resincraft Homepage v2.html#contact" class="nav-cta">Request a Quote</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-num">SVC</div>
+  <div class="page-eyebrow">
+    <div class="page-eyebrow-line"></div>
+    <span class="label">What We Do</span>
+  </div>
+  <h1 class="page-h1">
+    OUR<br/>
+    <span class="outline">SERVICES.</span>
+  </h1>
+  <p class="page-sub">
+    We work on floors every day — warehouses, hospitals, military facilities, showrooms, hotels, homes.
+    Each one gets the same attention: the right system, applied properly, with no shortcuts.
+    Here's exactly what we offer.
+  </p>
+</div>
+
+<!-- SERVICES -->
+<section class="section">
+
+  <!-- 01 INDUSTRIAL EPOXY -->
+  <div class="svc-block reveal">
+    <div class="svc-img">
+      <img src="uploads/A-smooth-reflective-gray-industrial-epoxy-floor-in-a-large-warehouse-or-factory.webp" alt="Industrial epoxy warehouse floor"/>
+      <div class="svc-img-label">Industrial Grade</div>
+    </div>
+    <div>
+      <div class="svc-num">01</div>
+      <h2 class="svc-title">INDUSTRIAL<br/>EPOXY FLOORING</h2>
+      <div class="svc-subtitle">Sols Industriels · أرضيات صناعية</div>
+      <p class="svc-body">
+        If your floor takes a beating every day — forklifts, heavy loads, chemicals, foot traffic — this is the system you need.
+        Industrial epoxy is thick, hard-wearing, and sealed so tight that spills sit on top instead of soaking in.
+        We use it in warehouses, logistics centres, port facilities, and manufacturing plants.
+        Once it's down, it works quietly for years without asking for much.
+      </p>
+      <div class="svc-points">
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>High-load rated</strong> — handles heavy forklift and pallet jack traffic without cracking or lifting.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Chemical resistant</strong> — oil, fuel, acids, and cleaning agents don't penetrate the surface.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Dust-free</strong> — sealed concrete stops the fine powder that builds up in uncoated floors.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Anti-slip options</strong> — broadcast aggregate topcoat available for high-traffic zones and ramps.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Fast return to service</strong> — back in operation within 24–48 hours of application.</div></div>
+      </div>
+      <a href="Resincraft Homepage v2.html#contact" class="btn-primary">Get a Quote</a>
+    </div>
+  </div>
+
+  <!-- 02 COMMERCIAL FLOORING -->
+  <div class="svc-block reverse reveal">
+    <div class="svc-img">
+      <img src="uploads/An-empty-clean-industrial-space-with-a-shiny-black-and-white-speckled-chip-broadcast-industrial-epoxy-flooring.webp" alt="Commercial epoxy showroom floor"/>
+      <div class="svc-img-label">Commercial Grade</div>
+    </div>
+    <div>
+      <div class="svc-num">02</div>
+      <h2 class="svc-title">COMMERCIAL<br/>FLOORING</h2>
+      <div class="svc-subtitle">Sols Commerciaux · أرضيات تجارية</div>
+      <p class="svc-body">
+        A retail space, office, or showroom floor does two things: it takes daily wear, and it makes an impression.
+        Commercial epoxy handles both. It's easy to clean, stands up to foot traffic, and looks sharp.
+        We can do clean solid colours, textured finishes, or decorative chip systems —
+        whatever fits the space and the brand.
+      </p>
+      <div class="svc-points">
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Wide colour range</strong> — from neutral greys to bold custom colours to match your interior.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Hygienic surface</strong> — seamless and non-porous, so bacteria and dirt have nowhere to hide.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Chip broadcast systems</strong> — decorative flakes embedded in the coating give texture and visual interest.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Low maintenance</strong> — a regular mop is all it needs. No waxing, no sealing, no hassle.</div></div>
+      </div>
+      <a href="Resincraft Homepage v2.html#contact" class="btn-primary">Get a Quote</a>
+    </div>
+  </div>
+
+  <!-- 03 DECORATIVE RESIN -->
+  <div class="svc-block reveal">
+    <div class="svc-img">
+      <img src="uploads/Pearl-Epoxy-Metallic-Loft-Flooring.jpg" alt="Decorative metallic resin floor luxury loft" style="object-position:center 30%;"/>
+      <div class="svc-img-label">Decorative Resin</div>
+    </div>
+    <div>
+      <div class="svc-num">03</div>
+      <h2 class="svc-title">DECORATIVE<br/>RESIN FLOORING</h2>
+      <div class="svc-subtitle">Résine Décorative · راتنج زخرفي</div>
+      <p class="svc-body">
+        This is the category where floors stop being functional and start being part of the design.
+        Metallic finishes, marble-like swirls, deep gloss surfaces that reflect light like water —
+        decorative resin is what we use in luxury homes, boutique hotels, and high-end hospitality spaces.
+        Every pour is slightly different, which means no two floors are exactly alike.
+      </p>
+      <div class="svc-points">
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Metallic pigment systems</strong> — pearl, titanium, gunmetal, copper, bronze and more.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>3D and marble effects</strong> — hand-applied swirling techniques create organic, one-of-a-kind patterns.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>UV-stable topcoat</strong> — the finish stays colour-accurate and doesn't yellow over time.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>28+ colour combinations</strong> — see our colour chart for available metallic systems.</div></div>
+      </div>
+      <a href="Resincraft Homepage v2.html#contact" class="btn-primary">Get a Quote</a>
+    </div>
+  </div>
+
+  <!-- 04 CONCRETE REPAIR -->
+  <div class="svc-block reverse reveal">
+    <div class="svc-img" style="background:var(--dark);display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 400 300" style="width:100%;height:100%;display:block;" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <pattern id="conc2" x="0" y="0" width="80" height="60" patternUnits="userSpaceOnUse">
+            <rect width="80" height="60" fill="#1a1510"/>
+            <rect x="0.5" y="0.5" width="79" height="59" fill="#1e1a14"/>
+            <line x1="0" y1="0" x2="80" y2="0" stroke="#111009" stroke-width="1"/>
+            <line x1="0" y1="0" x2="0" y2="60" stroke="#111009" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="400" height="300" fill="url(#conc2)"/>
+        <path d="M80 40 L120 100 L100 170 L160 240" stroke="#060402" stroke-width="3" fill="none"/>
+        <path d="M200 20 L180 90 L220 160 L200 280" stroke="#060402" stroke-width="4" fill="none"/>
+        <path d="M300 80 L350 120 L380 110" stroke="#080604" stroke-width="2.5" fill="none"/>
+        <ellipse cx="140" cy="140" rx="30" ry="18" fill="#0e0a06" opacity="0.7"/>
+        <text x="200" y="155" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="#3a3228" font-family="DM Mono,monospace" letter-spacing="3">CONCRETE REPAIR</text>
+      </svg>
+      <div class="svc-img-label">Before Treatment</div>
+    </div>
+    <div>
+      <div class="svc-num">04</div>
+      <h2 class="svc-title">CONCRETE<br/>REPAIR & PREP</h2>
+      <div class="svc-subtitle">Réparation Béton · إصلاح الخرسانة</div>
+      <p class="svc-body">
+        A coating is only as good as what's underneath it.
+        Most flooring failures happen because someone skipped the preparation —
+        they coated over cracks, damp concrete, or a dusty surface and hoped for the best.
+        We don't do that. Before any epoxy goes down, the substrate gets properly assessed and treated.
+        This includes crack injection, levelling compounds, moisture tests, and mechanical grinding.
+      </p>
+      <div class="svc-points">
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Crack injection & filling</strong> — structural and cosmetic cracks treated before coating.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Shot blasting & grinding</strong> — opens the concrete pores for proper epoxy adhesion.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Moisture mitigation</strong> — damp substrates treated with specialised barrier primers.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Surface levelling</strong> — high spots and dips corrected to achieve a flat, even surface.</div></div>
+      </div>
+      <a href="Resincraft Homepage v2.html#contact" class="btn-primary">Get a Quote</a>
+    </div>
+  </div>
+
+  <!-- 05 PROTECTIVE COATINGS -->
+  <div class="svc-block reveal">
+    <div class="svc-img">
+      <img src="uploads/Metallic-Epoxy-Floor titanium and gunmetal -17-1024x768.jpg" alt="Titanium metallic protective coating"/>
+      <div class="svc-img-label">Protective Coating</div>
+    </div>
+    <div>
+      <div class="svc-num">05</div>
+      <h2 class="svc-title">PROTECTIVE<br/>COATINGS</h2>
+      <div class="svc-subtitle">Revêtements Protecteurs · طلاءات واقية</div>
+      <p class="svc-body">
+        Not every floor needs a full epoxy system. Sometimes what you need is a protective seal —
+        something to stop moisture, dust, and surface wear without changing the look of the floor.
+        We offer polyurethane topcoats, penetrating sealers, and anti-carbonation coatings for
+        concrete surfaces that need protection without a full resurfacing.
+      </p>
+      <div class="svc-points">
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Polyurethane topcoats</strong> — flexible, UV-stable seal for floors already in good condition.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Penetrating sealers</strong> — absorb into the concrete and harden from within.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Roof & wall coatings</strong> — waterproof membranes for flat roofs and exposed concrete.</div></div>
+      </div>
+      <a href="Resincraft Homepage v2.html#contact" class="btn-primary">Get a Quote</a>
+    </div>
+  </div>
+
+  <!-- 06 ANTI-MICROBIAL HEALTHCARE -->
+  <div class="svc-block reverse reveal">
+    <div class="svc-img">
+      <img src="uploads/A-smooth-reflective-gray-industrial-epoxy-floor-in-a-large-warehouse-or-factory.webp" alt="Healthcare anti-microbial epoxy floor" style="filter:brightness(1.1) saturate(0.7);"/>
+      <div class="svc-img-label">Healthcare Grade</div>
+    </div>
+    <div>
+      <div class="svc-num">06</div>
+      <h2 class="svc-title">ANTI-MICROBIAL<br/>HEALTHCARE FLOORING</h2>
+      <div class="svc-subtitle">Sols Médicaux · أرضيات طبية</div>
+      <p class="svc-body">
+        Hospitals, clinics, laboratories, and pharmaceutical facilities require floors that go beyond
+        standard hygiene. Anti-microbial epoxy systems incorporate active agents that inhibit the
+        growth of bacteria and fungi on the surface — critical in environments where contamination
+        has real consequences. The surface is also seamless, which eliminates the joints and grout
+        lines where pathogens typically accumulate.
+      </p>
+      <div class="svc-points">
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Anti-microbial additives</strong> — inhibits bacterial and fungal growth at the surface level.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Seamless installation</strong> — no joints or grout lines where contamination can accumulate.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Chemical resistant</strong> — withstands frequent cleaning with strong disinfectants.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Coved skirting available</strong> — continuous floor-to-wall detail eliminates the most common contamination point.</div></div>
+      </div>
+      <a href="Resincraft Homepage v2.html#contact" class="btn-primary">Get a Quote</a>
+    </div>
+  </div>
+
+  <!-- 07 ANTI-STATIC ESD -->
+  <div class="svc-block reveal">
+    <div class="svc-img">
+      <img src="uploads/Metallic-Epoxy-Floor-17-1024x768.jpg" alt="Anti-static ESD epoxy floor"/>
+      <div class="svc-img-label">ESD / Anti-Static</div>
+    </div>
+    <div>
+      <div class="svc-num">07</div>
+      <h2 class="svc-title">ANTI-STATIC<br/>ESD SYSTEMS</h2>
+      <div class="svc-subtitle">Systèmes ESD · أنظمة مضادة للكهرباء الساكنة</div>
+      <p class="svc-body">
+        Electrostatic discharge is a serious risk in military facilities, electronics manufacturing,
+        data centres, and aviation environments. A single uncontrolled static discharge can damage
+        sensitive equipment or trigger hazardous ignition. Anti-static ESD flooring systems
+        provide a controlled path to ground, keeping static charge within safe limits.
+        These are specified and installed to IEC 61340 standards.
+      </p>
+      <div class="svc-points">
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>ESD compliant</strong> — installed to IEC 61340-4-1 specification with documented resistance readings.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Conductive or dissipative</strong> — system selected based on the specific sensitivity of the environment.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Military & defence ready</strong> — suitable for armouries, communications rooms, and maintenance bays.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Test certification included</strong> — resistance readings measured and documented at handover.</div></div>
+      </div>
+      <a href="Resincraft Homepage v2.html#contact" class="btn-primary">Get a Quote</a>
+    </div>
+  </div>
+
+  <!-- 08 EPOXY MORTAR -->
+  <div class="svc-block reverse reveal">
+    <div class="svc-img">
+      <img src="uploads/An-empty-clean-industrial-space-with-a-shiny-black-and-white-speckled-chip-broadcast-industrial-epoxy-flooring.webp" alt="Epoxy mortar heavy duty floor"/>
+      <div class="svc-img-label">Heavy Duty System</div>
+    </div>
+    <div>
+      <div class="svc-num">08</div>
+      <h2 class="svc-title">EPOXY MORTAR<br/>SYSTEMS</h2>
+      <div class="svc-subtitle">Mortier Époxy · ملاط الإيبوكسي</div>
+      <p class="svc-body">
+        Epoxy mortar is the heaviest-duty flooring system we install. Typically applied at 6–12mm
+        thickness, it's designed for environments with extreme mechanical loading, thermal shock,
+        heavy chemical exposure, or direct food and beverage contact. Food processing plants,
+        commercial kitchens, chemical storage facilities, and breweries are typical applications.
+        The system can be sloped to drain, textured for slip resistance, and coved at the walls
+        for full hygiene compliance.
+      </p>
+      <div class="svc-points">
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>6–12mm thickness</strong> — handles extreme impact and point loading that thinner systems can't.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Thermal shock resistant</strong> — suitable for environments with hot water washdown or steam cleaning.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Food-safe certified</strong> — materials comply with food contact standards for processing facilities.</div></div>
+        <div class="svc-point"><div class="svc-point-dot"></div><div class="svc-point-text"><strong>Fall-to-drain installation</strong> — floor graded and sloped for drainage as part of the system.</div></div>
+      </div>
+      <a href="Resincraft Homepage v2.html#contact" class="btn-primary">Get a Quote</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- MAINTENANCE ADD-ON -->
+<div class="addon-wrap reveal">
+  <div class="addon-grid">
+    <div>
+      <div class="addon-tag">Optional Add-On</div>
+      <h3 class="addon-h3">KEEP YOUR<br/>FLOOR<br/><span class="gold">PERFORMING.</span></h3>
+      <p class="addon-body">
+        A well-installed epoxy floor doesn't need much — but it does benefit from occasional attention.
+        Over time, heavy-use areas can show light surface wear, and a small scuff caught early is much
+        easier to deal with than one that's been left. For clients who want peace of mind,
+        we offer scheduled maintenance visits that keep the floor looking and performing as it should.
+        It's a straightforward service — an inspection, light treatment, and a report.
+        Most clients find it pays for itself by extending the life of the floor significantly.
+      </p>
+    </div>
+    <div>
+      <div class="addon-plans">
+        <div class="addon-plan">
+          <div class="addon-plan-name">ANNUAL INSPECTION</div>
+          <p class="addon-plan-desc">A full walk-over inspection of the floor surface, checking for wear, edge lifting, or any areas that need attention. Written report included.</p>
+          <div class="addon-plan-freq">Once per year</div>
+        </div>
+        <div class="addon-plan">
+          <div class="addon-plan-name">SURFACE REFRESH</div>
+          <p class="addon-plan-desc">Light mechanical cleaning, re-seal of any worn zones, and topcoat touch-up where needed. Keeps the floor looking new without a full resurfacing.</p>
+          <div class="addon-plan-freq">Every 2–3 years, depending on traffic</div>
+        </div>
+        <div class="addon-plan">
+          <div class="addon-plan-name">FULL MAINTENANCE PLAN</div>
+          <p class="addon-plan-desc">Combines annual inspection with biannual cleaning visits and priority response for any damage. Best suited to high-traffic industrial floors.</p>
+          <div class="addon-plan-freq">Ongoing — quoted per site</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="page-cta reveal">
+  <div class="label" style="margin-bottom:16px">Ready to Start?</div>
+  <h2 class="page-cta-h2">NOT SURE WHICH<br/><span class="gold">SERVICE YOU NEED?</span></h2>
+  <p class="page-cta-sub">Tell us about your space and we'll recommend the right system. No obligation, no pressure — just straightforward advice.</p>
+  <div style="display:flex;justify-content:center;gap:16px;">
+    <a href="Resincraft Homepage v2.html#contact" class="btn-primary">Request a Quote</a>
+    <a href="process.html" class="btn-secondary">Our Process <span>→</span></a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Resincraft Studios. All rights reserved.</div>
+    <a href="Resincraft Homepage v2.html" class="footer-back">← Back to Homepage</a>
+  </div>
+</footer>
+
+<script>
+// Lang dropdown
+(function(){
+  const wrap=document.getElementById('langWrap'),btn=document.getElementById('langBtn'),opts=document.querySelectorAll('.lang-opt');
+  if(!wrap)return;
+  btn.addEventListener('click',e=>{e.stopPropagation();wrap.classList.toggle('open');});
+  document.addEventListener('click',()=>wrap.classList.remove('open'));
+  opts.forEach(opt=>{opt.addEventListener('click',e=>{e.stopPropagation();opts.forEach(o=>o.classList.remove('active'));opt.classList.add('active');const lang=opt.dataset.lang;btn.innerHTML=lang+' <span class="lang-arrow">▾</span>';wrap.classList.remove('open');if(lang==='AR'){document.documentElement.setAttribute('dir','rtl');}else{document.documentElement.setAttribute('dir','ltr');}});});
+})();
+// Reveal
+const els=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+els.forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

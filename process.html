@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Our Process — Resincraft Studios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;}
+body{background:#080808;color:#e4ddd0;font-family:'DM Sans',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:#0a0a0a;}
+::-webkit-scrollbar-thumb{background:#c8b98a;border-radius:2px;}
+:root{
+  --black:#080808;--dark:#111111;--dark2:#161616;--border:#242424;
+  --subtle:#555555;--muted:#888888;--light:#c0b8a8;--cream:#e4ddd0;--white:#f4f0ea;
+  --gold:#c8b98a;--gold2:#a89870;--gold-dim:#5a4f38;
+  --ff-display:'Bebas Neue',sans-serif;--ff-body:'DM Sans',sans-serif;--ff-mono:'DM Mono',monospace;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:20px 64px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--ff-display);font-size:20px;letter-spacing:3px;color:var(--cream);text-decoration:none;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:36px;align-items:center;}
+.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-cta{background:var(--gold);color:var(--black)!important;padding:11px 24px;font-weight:700!important;letter-spacing:2px!important;}
+.nav-cta:hover{opacity:0.85;}
+.lang-wrap{position:relative;}
+.lang-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:7px 14px;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:var(--ff-mono);display:flex;align-items:center;gap:6px;transition:border-color 0.2s,color 0.2s;}
+.lang-btn:hover{border-color:var(--gold);color:var(--gold);}
+.lang-arrow{font-size:8px;transition:transform 0.2s;}
+.lang-wrap.open .lang-arrow{transform:rotate(180deg);}
+.lang-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--dark);border:1px solid var(--border);min-width:140px;z-index:300;flex-direction:column;}
+.lang-wrap.open .lang-dropdown{display:flex;}
+.lang-opt{background:transparent;border:none;color:var(--muted);padding:12px 18px;font-size:12px;text-align:left;cursor:pointer;font-family:var(--ff-body);letter-spacing:1px;transition:background 0.15s,color 0.15s;border-bottom:1px solid var(--border);}
+.lang-opt:last-child{border-bottom:none;}
+.lang-opt:hover{background:var(--dark2);color:var(--cream);}
+.lang-opt.active{color:var(--gold);}
+.label{font-family:var(--ff-mono);font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);}
+/* HERO */
+.page-hero{padding:160px 64px 100px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.page-hero-num{position:absolute;right:64px;top:140px;font-family:var(--ff-display);font-size:280px;color:#0e0e0e;line-height:1;pointer-events:none;letter-spacing:-12px;user-select:none;}
+.page-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.page-eyebrow-line{width:36px;height:1px;background:var(--gold);}
+.page-h1{font-family:var(--ff-display);font-size:clamp(64px,8vw,120px);line-height:0.9;letter-spacing:1px;color:var(--white);margin-bottom:24px;}
+.page-h1 .outline{-webkit-text-stroke:1.5px var(--gold);color:transparent;}
+.page-h1 .gold{color:var(--gold);}
+.page-sub{font-size:18px;font-weight:300;color:var(--light);line-height:1.75;max-width:580px;}
+/* STEPS */
+.steps-section{padding:100px 64px;}
+.steps-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:80px;}
+.steps-intro-h2{font-family:var(--ff-display);font-size:clamp(40px,5vw,72px);color:var(--white);line-height:0.9;}
+.steps-intro-h2 .gold{color:var(--gold);}
+.steps-intro-body{font-size:15px;color:var(--muted);line-height:1.8;}
+/* Step blocks */
+.step-block{display:grid;grid-template-columns:96px 1fr;gap:0;border-top:1px solid var(--border);padding:56px 0;position:relative;}
+.step-block:last-child{border-bottom:1px solid var(--border);}
+.step-block-num{font-family:var(--ff-display);font-size:80px;color:var(--gold);opacity:0.15;line-height:0.9;letter-spacing:-2px;transition:opacity 0.3s;}
+.step-block:hover .step-block-num{opacity:0.5;}
+.step-block-content{padding-left:48px;border-left:1px solid var(--border);margin-left:0;}
+.step-block-title{font-family:var(--ff-display);font-size:clamp(32px,3.5vw,52px);color:var(--white);letter-spacing:1px;line-height:0.9;margin-bottom:12px;}
+.step-block-subtitle{font-family:var(--ff-mono);font-size:10px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:24px;}
+.step-block-body{font-size:15px;color:var(--muted);line-height:1.85;max-width:680px;margin-bottom:28px;}
+.step-block-body p{margin-bottom:16px;}
+.step-block-body p:last-child{margin-bottom:0;}
+.step-details{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--border);margin-top:8px;}
+.step-detail{padding:14px 20px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+.step-detail:nth-child(3n){border-right:none;}
+.step-detail-label{font-family:var(--ff-mono);font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px;}
+.step-detail-val{font-size:13px;color:var(--cream);}
+/* WHY IT MATTERS */
+.why-matters{background:var(--dark);padding:100px 64px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.why-matters-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.wm-img{border:1px solid var(--border);overflow:hidden;aspect-ratio:4/3;}
+.wm-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.wm-h2{font-family:var(--ff-display);font-size:clamp(40px,4.5vw,68px);color:var(--white);line-height:0.9;margin-bottom:24px;}
+.wm-h2 .gold{color:var(--gold);}
+.wm-body{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:32px;}
+.wm-body p{margin-bottom:16px;}
+.wm-body p:last-child{margin-bottom:0;}
+.mini-stats{display:flex;gap:0;border:1px solid var(--border);}
+.mini-stat{flex:1;padding:20px 24px;text-align:center;border-right:1px solid var(--border);}
+.mini-stat:last-child{border-right:none;}
+.mini-stat-num{font-family:var(--ff-display);font-size:36px;color:var(--gold);line-height:1;}
+.mini-stat-label{font-family:var(--ff-mono);font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+/* FAQ */
+.faq-section{padding:100px 64px;}
+.faq-header{margin-bottom:64px;}
+.faq-list{display:flex;flex-direction:column;gap:0;}
+.faq-item{border-top:1px solid var(--border);}
+.faq-item:last-child{border-bottom:1px solid var(--border);}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:24px 0;cursor:pointer;user-select:none;}
+.faq-q-text{font-family:var(--ff-display);font-size:20px;color:var(--cream);letter-spacing:1px;}
+.faq-icon{width:28px;height:28px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.2s,border-color 0.2s;color:var(--gold);font-size:14px;}
+.faq-item.open .faq-icon{background:var(--gold);color:var(--black);border-color:var(--gold);}
+.faq-a{display:none;padding:0 0 24px;font-size:14px;color:var(--muted);line-height:1.8;max-width:760px;}
+.faq-item.open .faq-a{display:block;}
+/* CTA */
+.page-cta{background:var(--black);padding:100px 64px;text-align:center;border-top:1px solid var(--border);}
+.page-cta-h2{font-family:var(--ff-display);font-size:clamp(48px,6vw,88px);color:var(--white);line-height:0.9;margin-bottom:20px;}
+.page-cta-h2 .gold{color:var(--gold);}
+.page-cta-sub{font-size:16px;color:var(--muted);max-width:480px;margin:0 auto 40px;line-height:1.8;}
+.btn-primary{background:var(--gold);color:var(--black);padding:16px 44px;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;display:inline-block;transition:transform 0.2s,opacity 0.2s;font-family:var(--ff-body);}
+.btn-primary:hover{transform:translateY(-2px);opacity:0.87;}
+.btn-secondary{border:1px solid var(--border);color:var(--cream);padding:16px 44px;font-size:12px;font-weight:500;letter-spacing:3px;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:border-color 0.2s,color 0.2s,transform 0.2s;font-family:var(--ff-body);}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+footer{background:#060606;border-top:1px solid var(--border);padding:48px 64px 32px;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:12px;color:var(--subtle);}
+.footer-back{font-family:var(--ff-mono);font-size:10px;color:var(--gold-dim);letter-spacing:2px;text-decoration:none;}
+.footer-back:hover{color:var(--gold);}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.9s var(--ease-out),transform 0.9s var(--ease-out);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity 0.9s var(--ease-out),transform 0.9s var(--ease-out);}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity 0.9s var(--ease-out),transform 0.9s var(--ease-out);}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
+</style>
+</head>
+<body>
+<nav>
+  <a href="Resincraft Homepage v2.html" class="nav-logo">RESINCRAFT <span>STUDIOS</span></a>
+  <div class="nav-links">
+    <a href="Resincraft Homepage v2.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="process.html" class="active">Process</a>
+    <div class="lang-wrap" id="langWrap">
+      <button class="lang-btn" id="langBtn">EN <span class="lang-arrow">▾</span></button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-opt active" data-lang="EN">English</button>
+        <button class="lang-opt" data-lang="FR">Français</button>
+        <button class="lang-opt" data-lang="AR">العربية</button>
+        <button class="lang-opt" data-lang="SO">Somali</button>
+      </div>
+    </div>
+    <a href="Resincraft Homepage v2.html#contact" class="nav-cta">Request a Quote</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-num">06</div>
+  <div class="page-eyebrow">
+    <div class="page-eyebrow-line"></div>
+    <span class="label">How It Works</span>
+  </div>
+  <h1 class="page-h1">
+    THE SAME<br/>
+    <span class="gold">SIX STEPS.</span><br/>
+    <span class="outline">EVERY TIME.</span>
+  </h1>
+  <p class="page-sub">
+    There are no shortcuts in epoxy flooring. Skip a step and the floor fails —
+    it peels, cracks, or lifts. Our process is the same on every project,
+    whether it's 50 m² or 5,000 m². Here's exactly what happens.
+  </p>
+</div>
+
+<!-- STEPS -->
+<section class="steps-section">
+  <div class="steps-intro reveal">
+    <div>
+      <div class="label" style="margin-bottom:16px">The Process</div>
+      <h2 class="steps-intro-h2">
+        NOTHING GETS<br/>SKIPPED.<br/><span class="gold">NOTHING.</span>
+      </h2>
+    </div>
+    <p class="steps-intro-body">
+      Each step in our process exists because skipping it causes a real, visible problem down the line.
+      We'll walk you through what we do, why we do it, and what to expect at each stage of your project.
+    </p>
+  </div>
+
+  <!-- STEP 01 -->
+  <div class="step-block reveal">
+    <div class="step-block-num">01</div>
+    <div class="step-block-content">
+      <h3 class="step-block-title">SITE ASSESSMENT</h3>
+      <div class="step-block-subtitle">Before We Price Anything</div>
+      <div class="step-block-body">
+        <p>We come to the site before any quotation is finalised. A floor has to be looked at — photos and measurements aren't enough. We're checking the concrete condition, the moisture level, how the space is used, and whether there's anything that needs to be fixed before a coating goes down.</p>
+        <p>This visit usually takes an hour or two, depending on the size and complexity of the space. At the end of it, we know exactly what system to specify and how long the job will take. If we find a problem that will affect the floor's performance, we tell you then — not after we've started.</p>
+      </div>
+      <div class="step-details">
+        <div class="step-detail"><div class="step-detail-label">Duration</div><div class="step-detail-val">1–3 hours on site</div></div>
+        <div class="step-detail"><div class="step-detail-label">Includes</div><div class="step-detail-val">Moisture test, substrate check</div></div>
+        <div class="step-detail"><div class="step-detail-label">Output</div><div class="step-detail-val">Written spec + quotation</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 02 -->
+  <div class="step-block reveal">
+    <div class="step-block-num">02</div>
+    <div class="step-block-content">
+      <h3 class="step-block-title">SURFACE PREPARATION</h3>
+      <div class="step-block-subtitle">The Most Important Step</div>
+      <div class="step-block-body">
+        <p>This is where most flooring failures come from — poor or skipped preparation. Before any epoxy is applied, the concrete needs to be mechanically opened so the coating can bond properly. We use diamond grinders and shot blasting equipment to achieve the right surface profile.</p>
+        <p>At the same time, we fill cracks, treat any contaminated areas, and apply a moisture barrier if the readings require it. This stage takes as long as it takes — rushing it to save time always creates a problem later, and we've seen enough failed floors to know that.</p>
+      </div>
+      <div class="step-details">
+        <div class="step-detail"><div class="step-detail-label">Method</div><div class="step-detail-val">Diamond grinding / shot blast</div></div>
+        <div class="step-detail"><div class="step-detail-label">Crack treatment</div><div class="step-detail-val">Injection or filler compound</div></div>
+        <div class="step-detail"><div class="step-detail-label">Profile target</div><div class="step-detail-val">CSP 2–4 depending on system</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 03 -->
+  <div class="step-block reveal">
+    <div class="step-block-num">03</div>
+    <div class="step-block-content">
+      <h3 class="step-block-title">PRIMER APPLICATION</h3>
+      <div class="step-block-subtitle">The Bond That Makes Everything Work</div>
+      <div class="step-block-body">
+        <p>The primer is a low-viscosity epoxy that penetrates deep into the prepared concrete surface. It's not cosmetic — it creates the chemical bond between the substrate and the system layers above it. Without a proper primer, the coating sits on top of the floor rather than bonding to it.</p>
+        <p>We apply primer the same day as the surface preparation, while the concrete is clean and open. The primer is left to cure fully before the next coat goes down. Cutting this time short is another common cause of delamination, and we don't do it.</p>
+      </div>
+      <div class="step-details">
+        <div class="step-detail"><div class="step-detail-label">Type</div><div class="step-detail-val">Low-viscosity penetrating epoxy</div></div>
+        <div class="step-detail"><div class="step-detail-label">Cure time</div><div class="step-detail-val">8–12 hours minimum</div></div>
+        <div class="step-detail"><div class="step-detail-label">Purpose</div><div class="step-detail-val">Substrate bond + pinhole seal</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 04 -->
+  <div class="step-block reveal">
+    <div class="step-block-num">04</div>
+    <div class="step-block-content">
+      <h3 class="step-block-title">SYSTEM INSTALLATION</h3>
+      <div class="step-block-subtitle">The Core of the Job</div>
+      <div class="step-block-body">
+        <p>This is where the specified system goes down — the main body coat or coats that give the floor its performance properties. For an industrial floor, this might be a 2–3mm self-levelling epoxy. For a decorative resin, it's the metallic or coloured layer where the aesthetic effect is created.</p>
+        <p>We mix every batch by weight using calibrated scales, apply at the specified dry film thickness, and check coverage as we go. The conditions on site — temperature, humidity — are monitored throughout to make sure the curing process runs correctly.</p>
+      </div>
+      <div class="step-details">
+        <div class="step-detail"><div class="step-detail-label">Mix method</div><div class="step-detail-val">By weight — calibrated scales</div></div>
+        <div class="step-detail"><div class="step-detail-label">DFT checked</div><div class="step-detail-val">At every pour</div></div>
+        <div class="step-detail"><div class="step-detail-label">Monitoring</div><div class="step-detail-val">Temp & humidity logged</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 05 -->
+  <div class="step-block reveal">
+    <div class="step-block-num">05</div>
+    <div class="step-block-content">
+      <h3 class="step-block-title">TOPCOAT & FINISHING</h3>
+      <div class="step-block-subtitle">What the World Sees</div>
+      <div class="step-block-body">
+        <p>The topcoat is the final protective layer — it determines the sheen level, the slip resistance, and the long-term resistance to UV, chemicals, and surface wear. We use polyurethane or polyaspartic topcoats depending on the system and environment.</p>
+        <p>For decorative floors, this is also the layer that locks in the visual effect. A high-gloss topcoat amplifies metallic finishes; a matte topcoat gives a more natural concrete look. We'll discuss the options during the specification stage so there are no surprises when you see the finished result.</p>
+      </div>
+      <div class="step-details">
+        <div class="step-detail"><div class="step-detail-label">Options</div><div class="step-detail-val">Gloss / satin / matte</div></div>
+        <div class="step-detail"><div class="step-detail-label">UV stable</div><div class="step-detail-val">Yes — no yellowing</div></div>
+        <div class="step-detail"><div class="step-detail-label">Slip rating</div><div class="step-detail-val">R9–R11 available</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 06 -->
+  <div class="step-block reveal">
+    <div class="step-block-num">06</div>
+    <div class="step-block-content">
+      <h3 class="step-block-title">INSPECTION & HANDOVER</h3>
+      <div class="step-block-subtitle">We Don't Leave Until It's Right</div>
+      <div class="step-block-body">
+        <p>Before we pack up, the floor is inspected thoroughly — adhesion pull tests, DFT readings, visual check for pinholes or any imperfections. We check every edge, every joint, every area that was repaired. If we find something that doesn't meet specification, it gets fixed before handover.</p>
+        <p>When we hand over, we give you a brief maintenance guide and our contact details. Epoxy is low-maintenance, but it's worth knowing what to use and what to avoid. And if something comes up in the weeks after installation, we're reachable and we'll come back.</p>
+      </div>
+      <div class="step-details">
+        <div class="step-detail"><div class="step-detail-label">Tests</div><div class="step-detail-val">Pull adhesion + DFT check</div></div>
+        <div class="step-detail"><div class="step-detail-label">Return to use</div><div class="step-detail-val">24–48 hours after topcoat</div></div>
+        <div class="step-detail"><div class="step-detail-label">Aftercare</div><div class="step-detail-val">Written guide provided</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY IT MATTERS -->
+<section class="why-matters">
+  <div class="why-matters-inner">
+    <div class="wm-img reveal-left">
+      <img src="uploads/A-smooth-reflective-gray-industrial-epoxy-floor-in-a-large-warehouse-or-factory.webp" alt="Finished industrial epoxy floor"/>
+    </div>
+    <div class="reveal-right">
+      <div class="label" style="margin-bottom:16px">Why It Matters</div>
+      <h2 class="wm-h2">
+        PREPARATION IS<br/>
+        90% OF THE<br/>
+        <span class="gold">RESULT.</span>
+      </h2>
+      <div class="wm-body">
+        <p>Most floor coatings that fail don't fail because the product was bad. They fail because
+        the concrete wasn't prepared properly, or the primer was rushed, or someone applied the
+        topcoat before the base coat had cured. These are avoidable problems.</p>
+        <p>Following the full process adds time and cost upfront. But a floor installed correctly
+        the first time costs significantly less over its life than one that needs emergency repairs
+        or full replacement after a few years.</p>
+      </div>
+      <div class="mini-stats">
+        <div class="mini-stat">
+          <div class="mini-stat-num">10yr+</div>
+          <div class="mini-stat-label">Expected lifespan</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-num">24hr</div>
+          <div class="mini-stat-label">Back in service</div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-num">0</div>
+          <div class="mini-stat-label">Shortcuts taken</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-header reveal">
+    <div class="label" style="margin-bottom:16px">Common Questions</div>
+    <h2 style="font-family:var(--ff-display);font-size:clamp(40px,5vw,72px);color:var(--white);line-height:0.9;">
+      THINGS PEOPLE<br/><span style="color:var(--gold)">USUALLY ASK.</span>
+    </h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-text">How long does the full process take?</span><div class="faq-icon">+</div></div>
+      <p class="faq-a">It depends on the size and condition of the space. A typical 200–500 m² commercial floor takes 3–5 days including preparation. Larger industrial projects may take 1–2 weeks. We'll give you a clear timeline before we start, and we flag anything that could affect it during the site assessment.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-text">Can we use the space during the work?</span><div class="faq-icon">+</div></div>
+      <p class="faq-a">Usually not in the areas being coated. For large spaces, we often section the work so part of the floor remains accessible while the other part cures. This requires planning upfront — let us know if operational continuity is important and we'll design the project schedule around it.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-text">What if the concrete is in poor condition?</span><div class="faq-icon">+</div></div>
+      <p class="faq-a">Most concrete can be coated once it's properly prepared. Cracks get filled, weak spots get stabilised, and damp areas get treated with a moisture-tolerant primer. The key is identifying the issues before the job starts — which is exactly what the site assessment is for. In rare cases where the substrate is genuinely unsuitable, we'll tell you before we start.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-text">How long will the floor last?</span><div class="faq-icon">+</div></div>
+      <p class="faq-a">A properly installed epoxy floor in a commercial or industrial environment typically lasts 10 years or more with normal cleaning and maintenance. Decorative resin floors in residential settings often last longer because the wear is lighter. The biggest factor is how well the surface is looked after — avoiding abrasive cleaning products and addressing small chips or scratches early makes a significant difference.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-text">Does the floor need any maintenance after installation?</span><div class="faq-icon">+</div></div>
+      <p class="faq-a">Epoxy floors are low-maintenance — regular cleaning with a neutral pH cleaner is all most floors need day-to-day. For high-traffic industrial floors, we recommend a periodic inspection to catch any minor wear before it becomes a bigger issue. We offer scheduled maintenance visits for clients who want ongoing support — it's worth considering for commercial and industrial spaces that see heavy daily use.</p>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-q-text">Can you coat over an existing epoxy floor?</span><div class="faq-icon">+</div></div>
+      <p class="faq-a">Sometimes, yes — but it depends on the condition and adhesion of the existing coating. We'll test it during the site visit. If the old coating is still well-bonded, it can sometimes be abraded and recoated. If it's lifting or delaminating, it needs to come off first. We won't coat over a floor that will fail — it would just create a more expensive problem later.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="page-cta reveal">
+  <div class="label" style="margin-bottom:16px">Ready to Begin?</div>
+  <h2 class="page-cta-h2">STEP ONE IS<br/><span class="gold">A CONVERSATION.</span></h2>
+  <p class="page-cta-sub">Tell us about your project and we'll arrange a site visit. No charge, no commitment — just a proper look at what your floor needs.</p>
+  <div style="display:flex;justify-content:center;gap:16px;">
+    <a href="Resincraft Homepage v2.html#contact" class="btn-primary">Request a Site Visit</a>
+    <a href="services.html" class="btn-secondary">Our Services <span>→</span></a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Resincraft Studios. All rights reserved.</div>
+    <a href="Resincraft Homepage v2.html" class="footer-back">← Back to Homepage</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const wrap=document.getElementById('langWrap'),btn=document.getElementById('langBtn'),opts=document.querySelectorAll('.lang-opt');
+  if(!wrap)return;
+  btn.addEventListener('click',e=>{e.stopPropagation();wrap.classList.toggle('open');});
+  document.addEventListener('click',()=>wrap.classList.remove('open'));
+  opts.forEach(opt=>{opt.addEventListener('click',e=>{e.stopPropagation();opts.forEach(o=>o.classList.remove('active'));opt.classList.add('active');const lang=opt.dataset.lang;btn.innerHTML=lang+' <span class="lang-arrow">▾</span>';wrap.classList.remove('open');if(lang==='AR'){document.documentElement.setAttribute('dir','rtl');}else{document.documentElement.setAttribute('dir','ltr');}});});
+})();
+// Reveal
+const els=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+els.forEach(el=>obs.observe(el));
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement;
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen)item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

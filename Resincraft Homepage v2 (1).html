@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Resincraft Studios — Premium Epoxy Flooring</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ── RESET & BASE ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  background: #080808;
+  color: #e4ddd0;
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #c8b98a; border-radius: 2px; }
+
+/* ── TOKENS ──────────────────────────────────────────── */
+:root {
+  --black:   #080808;
+  --dark:    #111111;
+  --dark2:   #161616;
+  --dark3:   #1e1e1e;
+  --border:  #242424;
+  --mid:     #333333;
+  --subtle:  #555555;
+  --muted:   #888888;
+  --light:   #c0b8a8;
+  --cream:   #e4ddd0;
+  --white:   #f4f0ea;
+  --gold:    #c8b98a;
+  --gold2:   #a89870;
+  --gold-dim:#5a4f38;
+
+  --ff-display: 'Bebas Neue', sans-serif;
+  --ff-body:    'DM Sans', sans-serif;
+  --ff-mono:    'DM Mono', monospace;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:  cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+/* ── UTILITY ─────────────────────────────────────────── */
+.label {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.section-num {
+  font-family: var(--ff-display);
+  font-size: 120px;
+  color: #111;
+  line-height: 1;
+  user-select: none;
+  letter-spacing: -4px;
+  position: absolute;
+}
+
+/* ── ANIMATIONS ──────────────────────────────────────── */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes lineGrow {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+@keyframes pulseGold {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── NAV ─────────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 28px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: padding 0.4s var(--ease-out), background 0.4s, border-color 0.4s;
+  border-bottom: 1px solid transparent;
+}
+nav.scrolled {
+  padding: 16px 64px;
+  background: rgba(8,8,8,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom-color: var(--border);
+}
+.nav-logo {
+  font-family: var(--ff-display);
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: var(--cream);
+}
+.nav-logo span { color: var(--gold); }
+.nav-links {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-cta {
+  background: var(--gold);
+  color: var(--black) !important;
+  padding: 11px 24px;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  transition: opacity 0.2s !important;
+}
+.nav-cta:hover { opacity: 0.85; color: var(--black) !important; }
+
+/* ── HERO ─────────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 64px 80px;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-floor-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 40%;
+}
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    170deg,
+    rgba(8,8,8,0.3) 0%,
+    rgba(8,8,8,0.5) 30%,
+    rgba(8,8,8,0.85) 65%,
+    rgba(8,8,8,0.97) 100%
+  );
+}
+.hero-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+}
+.hero-brand {
+  font-family: var(--ff-display);
+  font-size: clamp(40px, 5.2vw, 80px);
+  line-height: 0.9;
+  letter-spacing: 6px;
+  color: var(--gold);
+  margin-bottom: 18px;
+  animation: fadeUp 1s var(--ease-out) 0.1s both;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.hero-brand .studios {
+  font-family: var(--ff-mono);
+  font-size: clamp(11px, 0.9vw, 14px);
+  letter-spacing: 6px;
+  color: var(--muted);
+  font-weight: 400;
+  text-transform: uppercase;
+  padding-bottom: 6px;
+}
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  animation: fadeUp 1s var(--ease-out) 0.2s both;
+}
+.hero-eyebrow-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+.hero-h1 {
+  font-family: var(--ff-display);
+  font-size: clamp(48px, 6.4vw, 96px);
+  line-height: 0.92;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 28px;
+  animation: fadeUp 1s var(--ease-out) 0.35s both;
+}
+.hero-h1 .outline {
+  -webkit-text-stroke: 1.5px var(--gold);
+  color: transparent;
+}
+.hero-h1 .gold { color: var(--gold); }
+.hero-sub {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--light);
+  line-height: 1.75;
+  max-width: 560px;
+  margin-bottom: 44px;
+  animation: fadeUp 1s var(--ease-out) 0.5s both;
+}
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  animation: fadeUp 1s var(--ease-out) 0.65s both;
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--black);
+  padding: 16px 44px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s, opacity 0.2s;
+  font-family: var(--ff-body);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.1);
+  transform: translateX(-100%);
+  transition: transform 0.3s var(--ease-out);
+}
+.btn-primary:hover::after { transform: translateX(0); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(200,185,138,0.3); }
+.btn-secondary {
+  border: 1px solid var(--border);
+  color: var(--cream);
+  padding: 16px 44px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s var(--ease-out);
+  font-family: var(--ff-body);
+}
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+.hero-stats {
+  position: absolute;
+  right: 64px;
+  bottom: 80px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  animation: fadeIn 1.2s var(--ease-out) 0.8s both;
+}
+.hero-stat-item {
+  text-align: right;
+  border-right: 1px solid var(--gold);
+  padding-right: 20px;
+}
+.hero-stat-num {
+  font-family: var(--ff-display);
+  font-size: 44px;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: 1px;
+}
+.hero-stat-label {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+  font-family: var(--ff-mono);
+}
+/* scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: fadeIn 1.5s var(--ease-out) 1.2s both;
+}
+.scroll-hint-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: pulseGold 2s ease-in-out infinite;
+}
+.scroll-hint-text {
+  font-family: var(--ff-mono);
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+
+/* ── TICKER ──────────────────────────────────────────── */
+.ticker-wrap {
+  background: var(--gold);
+  padding: 13px 0;
+  overflow: hidden;
+}
+.ticker-inner {
+  display: flex;
+  gap: 0;
+  white-space: nowrap;
+  width: max-content;
+  animation: ticker 22s linear infinite;
+}
+.ticker-item {
+  font-family: var(--ff-display);
+  font-size: 14px;
+  letter-spacing: 5px;
+  color: var(--black);
+  padding: 0 40px;
+}
+.ticker-dot {
+  font-size: 8px;
+  opacity: 0.4;
+}
+
+/* ── TRUST BAR ───────────────────────────────────────── */
+#trust {
+  background: var(--dark);
+  border-bottom: 1px solid var(--border);
+  padding: 56px 64px;
+}
+.trust-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.trust-stat {
+  padding: 0 48px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.trust-stat:first-child { padding-left: 0; }
+.trust-stat:last-child { border-right: none; padding-right: 0; }
+.trust-num {
+  font-family: var(--ff-display);
+  font-size: 56px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.trust-label {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 8px;
+  font-family: var(--ff-mono);
+}
+.trust-sub {
+  font-size: 12px;
+  color: var(--subtle);
+  margin-top: 4px;
+}
+
+/* ── SERVICES ────────────────────────────────────────── */
+#services {
+  background: var(--black);
+  padding: 120px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.services-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: end;
+  margin-bottom: 72px;
+}
+.section-h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(48px, 5.5vw, 80px);
+  line-height: 0.9;
+  letter-spacing: 1px;
+  color: var(--white);
+}
+.section-h2 .gold { color: var(--gold); }
+.section-h2 .outline {
+  -webkit-text-stroke: 1px var(--gold);
+  color: transparent;
+}
+.section-body {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 400px;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.svc-card {
+  background: var(--dark);
+  padding: 40px 32px 36px;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s var(--ease-out);
+}
+.svc-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out);
+}
+.svc-card:hover { background: var(--dark2); }
+.svc-card:hover::before { transform: scaleX(1); }
+.svc-icon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: border-color 0.3s;
+}
+.svc-card:hover .svc-icon { border-color: var(--gold); }
+.svc-icon svg { width: 22px; height: 22px; }
+.svc-photo {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--black);
+  transition: border-color 0.3s;
+}
+.svc-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.15) brightness(0.92) contrast(1.08);
+  transition: filter 0.4s var(--ease-out), transform 0.5s var(--ease-out);
+}
+.svc-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+}
+.svc-photo .svc-photo-tag {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  font-family: var(--ff-mono);
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  color: var(--gold);
+  text-transform: uppercase;
+  z-index: 2;
+}
+.svc-card:hover .svc-photo { border-color: var(--gold); }
+.svc-card:hover .svc-photo img { filter: grayscale(0) brightness(1) contrast(1.05); transform: scale(1.04); }
+.svc-title {
+  font-family: var(--ff-display);
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+.svc-fr {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.svc-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.svc-arrow {
+  margin-top: 24px;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.3s, transform 0.3s var(--ease-out);
+}
+.svc-card:hover .svc-arrow { opacity: 1; transform: translateX(0); }
+
+/* ── PROJECTS ────────────────────────────────────────── */
+#projects {
+  background: #0c0c0c;
+  padding: 120px 64px;
+}
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 56px;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 340px 280px;
+  gap: 3px;
+}
+.proj-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--dark2);
+}
+.proj-card:nth-child(1) { grid-column: span 7; }
+.proj-card:nth-child(2) { grid-column: span 5; }
+.proj-card:nth-child(3) { grid-column: span 4; }
+.proj-card:nth-child(4) { grid-column: span 4; }
+.proj-card:nth-child(5) { grid-column: span 4; }
+.proj-floor {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  transition: transform 0.7s var(--ease-out), filter 0.5s;
+}
+.proj-card:hover .proj-floor { transform: scale(1.04); filter: brightness(0.7); }
+.proj-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, rgba(8,8,8,0.3) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+}
+.proj-cat {
+  font-family: var(--ff-mono);
+  font-size: 9px;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  transition: opacity 0.3s;
+}
+.proj-name {
+  font-family: var(--ff-display);
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.proj-meta {
+  font-size: 12px;
+  color: var(--muted);
+}
+.proj-arrow {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 14px;
+  opacity: 0;
+  transform: translate(4px, -4px);
+  transition: opacity 0.3s, transform 0.3s var(--ease-out);
+}
+.proj-card:hover .proj-arrow { opacity: 1; transform: translate(0, 0); }
+.projects-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+/* ── BEFORE/AFTER ────────────────────────────────────── */
+#transform {
+  background: var(--black);
+  padding: 120px 64px;
+}
+.transform-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 96px;
+  align-items: center;
+}
+.ba-frame {
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.ba-frame svg { display: block; width: 100%; height: 100%; }
+.ba-label {
+  position: absolute;
+  top: 16px;
+  font-family: var(--ff-mono);
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  background: rgba(8,8,8,0.8);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--border);
+}
+.ba-label.before { left: 16px; color: var(--muted); }
+.ba-label.after  { right: 16px; color: var(--gold); border-color: var(--gold-dim); }
+.ba-divider {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--gold);
+}
+.ba-handle {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px; height: 36px;
+  background: var(--black);
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.ba-handle::before, .ba-handle::after {
+  content: '';
+  width: 5px; height: 5px;
+  border-top: 1.5px solid var(--gold);
+  border-right: 1.5px solid var(--gold);
+}
+.ba-handle::before { transform: rotate(-135deg); }
+.ba-handle::after  { transform: rotate(45deg); }
+
+/* ── PROCESS ─────────────────────────────────────────── */
+#process {
+  background: #0c0c0c;
+  padding: 120px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.process-header {
+  text-align: center;
+  margin-bottom: 88px;
+}
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  position: relative;
+}
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: calc(100%/12);
+  right: calc(100%/12);
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), var(--gold), var(--gold-dim), transparent);
+}
+.step {
+  padding: 0 24px;
+  text-align: center;
+  position: relative;
+}
+.step-num-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+.step-num {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--gold);
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-display);
+  font-size: 20px;
+  color: var(--gold);
+  position: relative;
+  z-index: 1;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.step:hover .step-num {
+  background: var(--gold);
+  color: var(--black);
+  box-shadow: 0 0 24px rgba(200,185,138,0.3);
+}
+.step-title {
+  font-family: var(--ff-display);
+  font-size: 17px;
+  letter-spacing: 2px;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+.step-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ── WHY US ──────────────────────────────────────────── */
+#why {
+  background: var(--dark);
+  padding: 120px 64px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.why-inner {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 96px;
+  align-items: start;
+}
+.why-left {
+  position: sticky;
+  top: 120px;
+}
+.why-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.why-item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 24px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+  cursor: default;
+}
+.why-item:first-child { border-top: 1px solid var(--border); }
+.why-item:hover { background: rgba(200,185,138,0.02); }
+.why-num {
+  font-family: var(--ff-display);
+  font-size: 38px;
+  color: var(--gold);
+  opacity: 0.4;
+  line-height: 1;
+  transition: opacity 0.3s;
+}
+.why-item:hover .why-num { opacity: 1; }
+.why-title {
+  font-family: var(--ff-display);
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+.why-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* ── CTA SECTION ─────────────────────────────────────── */
+#cta {
+  background: var(--black);
+  padding: 160px 64px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.cta-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--ff-display);
+  font-size: clamp(140px, 20vw, 280px);
+  color: #0f0f0f;
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: -8px;
+  user-select: none;
+  line-height: 1;
+}
+.cta-content { position: relative; z-index: 2; }
+.cta-h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(56px, 7vw, 112px);
+  line-height: 0.9;
+  color: var(--white);
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+.cta-h2 .gold { color: var(--gold); }
+.cta-sub {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto 48px;
+  line-height: 1.8;
+  font-weight: 300;
+}
+.cta-buttons { display: flex; justify-content: center; gap: 16px; }
+.cta-note {
+  margin-top: 24px;
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  color: var(--subtle);
+  letter-spacing: 2px;
+}
+
+/* ── QUOTE FORM ──────────────────────────────────────── */
+#contact {
+  background: var(--dark);
+  padding: 120px 64px;
+  border-top: 1px solid var(--border);
+}
+.contact-inner {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 96px;
+  align-items: start;
+}
+.contact-info-title {
+  font-family: var(--ff-display);
+  font-size: clamp(44px, 4.5vw, 72px);
+  line-height: 0.9;
+  color: var(--white);
+  margin-bottom: 28px;
+  letter-spacing: 1px;
+}
+.contact-info-title .gold { color: var(--gold); }
+.contact-info-body {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 48px;
+}
+.contact-detail {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.contact-icon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contact-detail-label {
+  font-family: var(--ff-mono);
+  font-size: 9px;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.contact-detail-val {
+  font-size: 14px;
+  color: var(--light);
+}
+/* Form */
+.form-wrap {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  padding: 48px;
+}
+.form-steps {
+  display: flex;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+}
+.form-step {
+  flex: 1;
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--subtle);
+  border-bottom: 2px solid transparent;
+  cursor: default;
+  font-family: var(--ff-mono);
+  transition: color 0.2s, border-color 0.2s;
+}
+.form-step.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+.form-step.done { color: var(--muted); border-bottom-color: var(--mid); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.form-full { grid-column: 1/-1; }
+.form-label {
+  display: block;
+  font-family: var(--ff-mono);
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.form-input {
+  width: 100%;
+  background: var(--dark);
+  border: 1px solid var(--border);
+  color: var(--cream);
+  padding: 14px 16px;
+  font-size: 14px;
+  font-family: var(--ff-body);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-input:focus { border-color: var(--gold); }
+.form-input::placeholder { color: var(--subtle); }
+select.form-input { cursor: pointer; appearance: none; }
+textarea.form-input { height: 120px; resize: vertical; }
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  grid-column: 1/-1;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 13px 28px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: var(--ff-body);
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+.btn-submit {
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  padding: 15px 44px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: var(--ff-body);
+  transition: opacity 0.2s, transform 0.2s var(--ease-out);
+}
+.btn-submit:hover { opacity: 0.87; transform: translateY(-2px); }
+.form-success {
+  text-align: center;
+  padding: 64px 32px;
+  display: none;
+}
+.form-success.show { display: block; }
+.form-main.hide { display: none; }
+
+/* ── LANGUAGE DROPDOWN ───────────────────────────────── */
+.lang-wrap {
+  position: relative;
+}
+.lang-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 7px 14px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: var(--ff-mono);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.lang-btn:hover { border-color: var(--gold); color: var(--gold); }
+.lang-arrow { font-size: 8px; transition: transform 0.2s; }
+.lang-wrap.open .lang-arrow { transform: rotate(180deg); }
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--dark);
+  border: 1px solid var(--border);
+  min-width: 140px;
+  z-index: 300;
+  flex-direction: column;
+}
+.lang-wrap.open .lang-dropdown { display: flex; }
+.lang-opt {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  padding: 12px 18px;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--ff-body);
+  letter-spacing: 1px;
+  transition: background 0.15s, color 0.15s;
+  border-bottom: 1px solid var(--border);
+}
+.lang-opt:last-child { border-bottom: none; }
+.lang-opt:hover { background: var(--dark2); color: var(--cream); }
+.lang-opt.active { color: var(--gold); }
+
+
+footer {
+  background: #060606;
+  border-top: 1px solid var(--border);
+  padding: 72px 64px 40px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr 1.2fr;
+  gap: 64px;
+  margin-bottom: 56px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--border);
+}
+.footer-logo {
+  font-family: var(--ff-display);
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: var(--cream);
+  margin-bottom: 18px;
+}
+.footer-logo span { color: var(--gold); }
+.footer-tagline {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 280px;
+  margin-bottom: 28px;
+}
+.footer-socials {
+  display: flex;
+  gap: 10px;
+}
+.social-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.social-btn:hover { border-color: var(--gold); color: var(--gold); }
+.footer-col-title {
+  font-family: var(--ff-mono);
+  font-size: 9px;
+  color: var(--gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.footer-link {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: color 0.2s;
+}
+.footer-link:hover { color: var(--cream); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-copy {
+  font-size: 12px;
+  color: var(--subtle);
+}
+.footer-regions {
+  display: flex;
+  gap: 20px;
+}
+.footer-region {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  color: var(--gold-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <div class="nav-logo" style="font-size: 19px; line-height: 3; opacity: 1; height: 26px; text-align: left">RESINCRAFT <span>STUDIOS</span></div>
+  <div class="nav-links">
+    <a href="services.html" data-i18n="nav.services">Services</a>
+    <a href="#projects" data-i18n="nav.projects">Projects</a>
+    <a href="process.html" data-i18n="nav.process">Process</a>
+    <a href="about.html" data-i18n="nav.about">About</a>
+    <!-- Language selector -->
+    <div class="lang-wrap" id="langWrap">
+      <button class="lang-btn" id="langBtn" aria-haspopup="true">EN <span class="lang-arrow">▾</span></button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-opt active" data-lang="EN" data-i18n="lang.en">English</button>
+        <button class="lang-opt" data-lang="FR" data-i18n="lang.fr">Français</button>
+        <button class="lang-opt" data-lang="AR" data-i18n="lang.ar">العربية</button>
+        <button class="lang-opt" data-lang="SO" data-i18n="lang.so">Somali</button>
+      </div>
+    </div>
+    <a href="#contact" class="nav-cta" data-i18n="cta.quote">Request a Quote</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-bg">
+    <!-- Hero image: Pearl Epoxy Metallic Loft — 2048×1536, highest res -->
+    <img class="hero-floor-svg" src="uploads/Pearl-Epoxy-Metallic-Loft-Flooring.jpg" alt="Premium epoxy floor — loft interior" style="object-fit:cover;object-position:center 40%;"/>
+    <div class="hero-gradient"></div>
+    <div class="hero-noise"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-brand" data-i18n="hero.brand_studios_lead">
+      RESINCRAFT<span class="studios" data-i18n="hero.brand_studios_label">STUDIOS</span>
+    </div>
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="label" data-i18n="hero.eyebrow">Djibouti · East Africa · Middle East</span>
+    </div>
+    <h1 class="hero-h1">
+      <span data-i18n="hero.h1_l1">BUILT</span><br/>
+      <span class="outline" data-i18n="hero.h1_l2">FLAWLESS.</span><br/>
+      <span data-i18n="hero.h1_l3">SEALED</span><br/>
+      <span class="gold" data-i18n="hero.h1_l4">FOREVER.</span>
+    </h1>
+    <p class="hero-sub" data-i18n="hero.sub">
+      Industrial and decorative epoxy flooring engineered for the projects
+      that can't afford imperfection. From port warehouses to luxury residences —
+      zero defects, every time.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary" data-i18n="cta.quote">Request a Quote</a>
+      <a href="#projects" class="btn-secondary"><span data-i18n="cta.view_projects">View Projects</span> <span>→</span></a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat-item">
+      <div class="hero-stat-num">10yr+</div>
+      <div class="hero-stat-label" data-i18n="stat.lifespan">System Lifespan</div>
+    </div>
+    <div class="hero-stat-item">
+      <div class="hero-stat-num">ISO</div>
+      <div class="hero-stat-label" data-i18n="stat.materials">Certified Materials</div>
+    </div>
+    <div class="hero-stat-item">
+      <div class="hero-stat-num">Zero</div>
+      <div class="hero-stat-label" data-i18n="stat.defect">Defect Policy</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-hint-text" data-i18n="hero.scroll">Scroll</div>
+    <div class="scroll-hint-line"></div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item">FLAWLESS FINISH</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">SEAMLESS BY DESIGN</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">INDUSTRIAL GRADE</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">ZERO DEFECTS</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">BUILT TO LAST</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">DESIGNED TO IMPRESS</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">PREMIUM EPOXY</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">RESINCRAFT STUDIOS</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">FLAWLESS FINISH</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">SEAMLESS BY DESIGN</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">INDUSTRIAL GRADE</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">ZERO DEFECTS</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">BUILT TO LAST</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">DESIGNED TO IMPRESS</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">PREMIUM EPOXY</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">RESINCRAFT STUDIOS</span><span class="ticker-dot">·</span>
+  </div>
+</div>
+
+<!-- ── TRUST BAR ── -->
+<section id="trust">
+  <div class="trust-inner">
+    <div class="trust-stat reveal">
+      <div class="trust-num">10yr+</div>
+      <div class="trust-label" data-i18n="stat.lifespan">System Lifespan</div>
+      <div class="trust-sub" data-i18n="trust.lifespan_sub">With Standard Upkeep</div>
+    </div>
+    <div class="trust-stat reveal" style="transition-delay:0.1s">
+      <div class="trust-num">24hr</div>
+      <div class="trust-label" data-i18n="trust.cure">Cure Time</div>
+      <div class="trust-sub" data-i18n="trust.cure_sub">Back in Service Fast</div>
+    </div>
+    <div class="trust-stat reveal" style="transition-delay:0.2s">
+      <div class="trust-num">ISO</div>
+      <div class="trust-label" data-i18n="stat.materials">Certified Materials</div>
+      <div class="trust-sub" data-i18n="trust.materials_sub">European-Grade Systems</div>
+    </div>
+    <div class="trust-stat reveal" style="transition-delay:0.3s">
+      <div class="trust-num">Zero</div>
+      <div class="trust-label" data-i18n="stat.defect">Defect Policy</div>
+      <div class="trust-sub" data-i18n="trust.defect_sub">Every m² Inspected</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="services-header">
+    <div class="reveal-left">
+      <div class="label" style="margin-bottom:16px" data-i18n="sec.services_label">02 / Our Services</div>
+      <h2 class="section-h2">
+        <span data-i18n="sec.services_h1">EVERY SURFACE.</span><br/>
+        <span class="gold" data-i18n="sec.services_h2">EVERY</span><br/>
+        <span class="outline" data-i18n="sec.services_h3">SCALE.</span>
+      </h2>
+    </div>
+    <div class="reveal-right">
+      <p class="section-body" data-i18n="sec.services_body">
+        From 50 m² boutique showrooms to 20,000 m² port warehouses,
+        Resincraft Studios delivers systems engineered to perform under
+        the most demanding conditions — chemically, mechanically, and aesthetically.
+      </p>
+    </div>
+  </div>
+  <div class="services-grid reveal">
+    <!-- Card 1 -->
+    <div class="svc-card">
+      <div class="svc-photo">
+        <img src="uploads/epoxy_flooring_design___installation_services.jpg" alt="Industrial epoxy installation — laser leveling and squeegee application on a blue resin floor" loading="lazy"/>
+        <span class="svc-photo-tag" data-i18n="svc.industrial_tag">On Site · Live Install</span>
+      </div>
+      <div class="svc-title" data-i18n="svc.industrial">INDUSTRIAL EPOXY</div>
+      <div class="svc-fr">Sols Industriels</div>
+      <p class="svc-desc">High-load warehouses, logistics hubs, port facilities, and manufacturing floors. Engineered for heavy forklift traffic, chemical spills, and decades of service without delamination.</p>
+      <div class="svc-arrow">Learn more <span>→</span></div>
+    </div>
+    <!-- Card 2 -->
+    <div class="svc-card">
+      <div class="svc-photo">
+        <img src="uploads/grey_metallic_epoxy_commercial.jpg" alt="Grey metallic epoxy floor in a commercial reception with high-gloss finish" loading="lazy"/>
+        <span class="svc-photo-tag" data-i18n="svc.commercial_tag">Project · Reception Floor</span>
+      </div>
+      <div class="svc-title" data-i18n="svc.commercial">COMMERCIAL FLOORING</div>
+      <div class="svc-fr">Sols Commerciaux</div>
+      <p class="svc-desc">Retail spaces, showrooms, corporate offices, and malls. Where first impressions are sealed into the floor — durable, hygienic, and visually commanding.</p>
+      <div class="svc-arrow">Learn more <span>→</span></div>
+    </div>
+    <!-- Card 3 -->
+    <div class="svc-card">
+      <div class="svc-photo">
+        <img src="uploads/luxury_residence_epoxy_flooring.jpg" alt="Luxury residence with marble-effect epoxy flooring in a high-end living space" loading="lazy"/>
+        <span class="svc-photo-tag" data-i18n="svc.decorative_tag">Residence · Marble Effect</span>
+      </div>
+      <div class="svc-title" data-i18n="svc.decorative">DECORATIVE RESIN</div>
+      <div class="svc-fr">Résine Décorative</div>
+      <p class="svc-desc">Luxury villas, five-star hotels, and high-end hospitality. Metallic finishes, 3D marble effects, and custom colour systems — floor as a design statement.</p>
+      <div class="svc-arrow">Learn more <span>→</span></div>
+    </div>
+    <!-- Card 4 -->
+    <div class="svc-card">
+      <div class="svc-photo">
+        <img src="uploads/concrete filling job.jpg" alt="Concrete crack injection in progress — black sealant being applied to a joint" loading="lazy"/>
+        <span class="svc-photo-tag" data-i18n="svc.concrete_tag">On Site · Crack Repair</span>
+      </div>
+      <div class="svc-title" data-i18n="svc.concrete">CONCRETE REPAIR</div>
+      <div class="svc-fr">Réparation Béton</div>
+      <p class="svc-desc">Crack injection, surface levelling, moisture mitigation, and shot-blast preparation. We fix what others can't and build the foundation that makes a coating last.</p>
+      <div class="svc-arrow">Learn more <span>→</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURED PROJECTS ── -->
+<section id="projects">
+  <div class="projects-header reveal">
+    <div>
+      <div class="label" style="margin-bottom:14px" data-i18n="sec.projects_label">03 / Featured Projects</div>
+      <h2 class="section-h2">
+        <span data-i18n="sec.projects_h1">THE PROOF IS</span><br/><span class="gold" data-i18n="sec.projects_h2">IN THE FLOOR.</span>
+      </h2>
+    </div>
+    <a href="#" class="btn-secondary" style="font-size:11px;padding:12px 28px;"><span data-i18n="cta.view_all">View All Projects</span> <span>→</span></a>
+  </div>
+  <div class="projects-grid reveal">
+    <!-- Card 1 — large -->
+    <div class="proj-card">
+      <img class="proj-floor" src="uploads/A-smooth-reflective-gray-industrial-epoxy-floor-in-a-large-warehouse-or-factory.webp" alt="Industrial warehouse epoxy floor" style="object-fit:cover;"/>
+      <div class="proj-overlay">
+        <div class="proj-cat">Industrial</div>
+        <div class="proj-name">WAREHOUSE FLOORING</div>
+        <div class="proj-meta">High-Load Epoxy · Heavy Traffic · Chemical Resistant</div>
+      </div>
+      <div class="proj-arrow">↗</div>
+    </div>
+    <!-- Card 2 -->
+    <div class="proj-card">
+      <img class="proj-floor" src="uploads/Pearl-Epoxy-Metallic-Loft-Flooring.jpg" alt="Pearl metallic loft flooring" style="object-fit:cover;object-position:center 30%;"/>
+      <div class="proj-overlay">
+        <div class="proj-cat">Residential</div>
+        <div class="proj-name">LUXURY RESIDENTIAL</div>
+        <div class="proj-meta">Pearl Metallic Resin · Marble Effect · UV-Stable Topcoat</div>
+      </div>
+      <div class="proj-arrow">↗</div>
+    </div>
+    <!-- Row 2 cards -->
+    <div class="proj-card">
+      <img class="proj-floor" src="uploads/An-empty-clean-industrial-space-with-a-shiny-black-and-white-speckled-chip-broadcast-industrial-epoxy-flooring.webp" alt="Chip broadcast industrial epoxy" style="object-fit:cover;"/>
+      <div class="proj-overlay">
+        <div class="proj-cat">Industrial</div>
+        <div class="proj-name">LOGISTICS CENTRE</div>
+        <div class="proj-meta">Anti-Static Epoxy · ESD Compliant · Seamless Finish</div>
+      </div>
+      <div class="proj-arrow">↗</div>
+    </div>
+    <div class="proj-card">
+      <img class="proj-floor" src="uploads/Metallic-Epoxy-Floor-17-1024x768.jpg" alt="Metallic epoxy decorative floor" style="object-fit:cover;"/>
+      <div class="proj-overlay">
+        <div class="proj-cat">Commercial</div>
+        <div class="proj-name">RETAIL SHOWROOM</div>
+        <div class="proj-meta">Decorative Metallic · Quartz Broadcast · High-Gloss Seal</div>
+      </div>
+      <div class="proj-arrow">↗</div>
+    </div>
+    <div class="proj-card">
+      <img class="proj-floor" src="uploads/Metallic-Epoxy-Floor titanium and gunmetal -17-1024x768.jpg" alt="Titanium gunmetal metallic epoxy" style="object-fit:cover;"/>
+      <div class="proj-overlay">
+        <div class="proj-cat">Hospitality</div>
+        <div class="proj-name">HOTEL & LOBBY</div>
+        <div class="proj-meta">Titanium Metallic · Mirror Finish · Slip-Resistant Topcoat</div>
+      </div>
+      <div class="proj-arrow">↗</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BEFORE/AFTER ── -->
+<section id="transform">
+  <div class="transform-inner">
+    <div class="reveal-left">
+      <div class="label" style="margin-bottom:16px" data-i18n="sec.transform_label">04 / Transformation</div>
+      <h2 class="section-h2" style="margin-bottom:24px">
+        <span data-i18n="sec.transform_h1">CRACKED &amp;</span><br/>
+        <span data-i18n="sec.transform_h2">DAMAGED.</span><br/>
+        <span class="gold" data-i18n="sec.transform_h3">THEN SEALED</span><br/>
+        <span class="outline" data-i18n="sec.transform_h4">FLAWLESS.</span>
+      </h2>
+      <p class="section-body" style="margin-bottom:40px" data-i18n="sec.transform_body">
+        This is a real warehouse scenario — cracked concrete, oil stains, years of heavy use.
+        Drag the slider to see what happens after proper surface prep and a full epoxy system.
+        The job takes a few days. The result lasts well over a decade.
+      </p>
+      <div style="display:flex;gap:0;border:1px solid var(--border);">
+        <div style="flex:1;padding:20px 24px;text-align:center;border-right:1px solid var(--border)">
+          <div style="font-family:var(--ff-display);font-size:36px;color:var(--gold)">24hr</div>
+          <div style="font-family:var(--ff-mono);font-size:9px;color:var(--muted);letter-spacing:2px;margin-top:4px" data-i18n="trust.cure">CURE TIME</div>
+        </div>
+        <div style="flex:1;padding:20px 24px;text-align:center;border-right:1px solid var(--border)">
+          <div style="font-family:var(--ff-display);font-size:36px;color:var(--gold)">10yr+</div>
+          <div style="font-family:var(--ff-mono);font-size:9px;color:var(--muted);letter-spacing:2px;margin-top:4px" data-i18n="transform.lifespan">LIFESPAN</div>
+        </div>
+        <div style="flex:1;padding:20px 24px;text-align:center">
+          <div style="font-family:var(--ff-display);font-size:36px;color:var(--gold)">ISO</div>
+          <div style="font-family:var(--ff-mono);font-size:9px;color:var(--muted);letter-spacing:2px;margin-top:4px" data-i18n="transform.iso_label">CERTIFIED MATERIALS</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <div class="ba-frame" id="baFrame" style="cursor:ew-resize;user-select:none;">
+        <!-- BEFORE image: damaged cracked warehouse floor -->
+        <img id="baImgBefore" src="uploads/drive-thru-with-oil-800pix-72.webp"
+          alt="Before — cracked oil-stained warehouse floor" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"/>
+        <!-- AFTER image clipped to right half -->
+        <div id="baAfterWrap" style="position:absolute;inset:0;overflow:hidden;width:50%;left:50%;">
+          <img src="uploads/A-smooth-reflective-gray-industrial-epoxy-floor-in-a-large-warehouse-or-factory.webp"
+            alt="After — seamless reflective epoxy floor"
+            style="position:absolute;top:0;left:0;width:200%;height:100%;max-width:none;object-fit:cover;object-position:left center;"/>
+        </div>
+        <!-- Divider line + handle -->
+        <div id="baDivider" style="position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--gold);transform:translateX(-50%);z-index:3;"></div>
+        <div id="baHandle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;background:var(--black);border:1.5px solid var(--gold);border-radius:50%;z-index:4;display:flex;align-items:center;justify-content:center;gap:6px;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <polyline points="5,3 1,8 5,13" stroke="#c8b98a" stroke-width="1.5" fill="none"/>
+            <polyline points="11,3 15,8 11,13" stroke="#c8b98a" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        <div class="ba-label before" data-i18n="transform.before">BEFORE</div>
+        <div class="ba-label after" data-i18n="transform.after">AFTER</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section id="process">
+  <div class="process-header reveal">
+    <div class="label" style="margin-bottom:16px" data-i18n="sec.process_label">05 / Our Process</div>
+    <h2 class="section-h2">
+      <span data-i18n="sec.process_h1">SIX STEPS.</span> <span class="gold" data-i18n="sec.process_h2">ONE STANDARD.</span><br/><span class="outline" data-i18n="sec.process_h3">EXCELLENCE.</span>
+    </h2>
+  </div>
+  <div class="process-steps">
+    <div class="step reveal" style="transition-delay:0.0s">
+      <div class="step-num-wrap"><div class="step-num">01</div></div>
+      <div class="step-title" data-i18n="step.01">SITE ASSESSMENT</div>
+      <p class="step-desc">On-site evaluation of substrate, moisture levels, load requirements, and project scope. No assumptions — only data.</p>
+    </div>
+    <div class="step reveal" style="transition-delay:0.1s">
+      <div class="step-num-wrap"><div class="step-num">02</div></div>
+      <div class="step-title" data-i18n="step.02">SURFACE PREP</div>
+      <p class="step-desc">Diamond grinding, shot blasting, crack repair, and moisture mitigation. The foundation of every flawless coat.</p>
+    </div>
+    <div class="step reveal" style="transition-delay:0.2s">
+      <div class="step-num-wrap"><div class="step-num">03</div></div>
+      <div class="step-title" data-i18n="step.03">PRIMER COAT</div>
+      <p class="step-desc">Penetrating epoxy primer bonds at molecular level. Zero pinholes. Eliminates delamination risk permanently.</p>
+    </div>
+    <div class="step reveal" style="transition-delay:0.3s">
+      <div class="step-num-wrap"><div class="step-num">04</div></div>
+      <div class="step-title" data-i18n="step.04">SYSTEM INSTALL</div>
+      <p class="step-desc">Main coat application — industrial, anti-static, or decorative system installed to exact specification and DFT.</p>
+    </div>
+    <div class="step reveal" style="transition-delay:0.4s">
+      <div class="step-num-wrap"><div class="step-num">05</div></div>
+      <div class="step-title" data-i18n="step.05">TOPCOAT & SEAL</div>
+      <p class="step-desc">UV-stable, chemical-resistant topcoat buffed and sealed. The layer the world sees — and judges.</p>
+    </div>
+    <div class="step reveal" style="transition-delay:0.5s">
+      <div class="step-num-wrap"><div class="step-num">06</div></div>
+      <div class="step-title" data-i18n="step.06">QUALITY SIGN-OFF</div>
+      <p class="step-desc">Adhesion pull tests, DFT checks, and full inspection. We hand over keys only when every square metre passes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY CHOOSE US ── -->
+<section id="why">
+  <div class="why-inner">
+    <div class="why-left reveal-left">
+      <div class="label" style="margin-bottom:16px" data-i18n="sec.why_label">06 / Why Resincraft</div>
+      <h2 class="section-h2" style="margin-bottom:24px">
+        <span data-i18n="sec.why_h1">FIVE REASONS</span><br/>
+        <span data-i18n="sec.why_h2">THE BEST</span><br/>
+        <span class="gold" data-i18n="sec.why_h3">CHOOSE US.</span>
+      </h2>
+      <p class="section-body" style="margin-bottom:32px">
+        We're not the largest company in the region — we're the most precise.
+        Our clients return not because of our price, but because of our results.
+        And our results speak louder than any certificate.
+      </p>
+      <!-- Colour chart -->
+      <div style="border:1px solid var(--border);overflow:hidden;">
+        <div style="font-family:var(--ff-mono);font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;padding:10px 14px;border-bottom:1px solid var(--border);background:var(--dark2)">AVAILABLE COLOUR SYSTEMS</div>
+        <img src="uploads/Epoxy resin flooring Colour Coating chart 2 .jpg" alt="Metallic epoxy colour composites chart"
+          style="width:100%;display:block;filter:brightness(0.88) contrast(1.05);"/>
+      </div>
+    </div>
+    <div class="why-right">
+      <div class="why-item reveal">
+        <div class="why-num">01</div>
+        <div>
+          <div class="why-title" data-i18n="why.01">ENGINEERED DURABILITY</div>
+          <p class="why-desc">Our systems are specified for the actual load, chemical exposure, and thermal cycle of your site — not a generic product sheet. Floors that outlast their buildings.</p>
+        </div>
+      </div>
+      <div class="why-item reveal" style="transition-delay:0.1s">
+        <div class="why-num">02</div>
+        <div>
+          <div class="why-title" data-i18n="why.02">MILLIMETRE PRECISION</div>
+          <p class="why-desc">We measure. We don't guess. Every coat is applied at specified DFT with calibrated instruments and documented. No shortcuts, no "close enough".</p>
+        </div>
+      </div>
+      <div class="why-item reveal" style="transition-delay:0.2s">
+        <div class="why-num">03</div>
+        <div>
+          <div class="why-title" data-i18n="why.03">PREMIUM MATERIALS ONLY</div>
+          <p class="why-desc">We use European-grade epoxy systems from certified manufacturers. The difference between a coating that lasts 5 years and one that lasts 30 starts in the barrel.</p>
+        </div>
+      </div>
+      <div class="why-item reveal" style="transition-delay:0.3s">
+        <div class="why-num">04</div>
+        <div>
+          <div class="why-title" data-i18n="why.04">ZERO-DEFECT EXECUTION</div>
+          <p class="why-desc">Our QC protocol includes substrate testing before work begins, in-process checks at every coat, and final adhesion pull tests before handover. Defects don't leave site.</p>
+        </div>
+      </div>
+      <div class="why-item reveal" style="transition-delay:0.4s">
+        <div class="why-num">05</div>
+        <div>
+          <div class="why-title" data-i18n="why.05">REGIONAL SCALE, GLOBAL STANDARDS</div>
+          <p class="why-desc">Based in Djibouti, operating across East Africa and the Middle East. We understand the climate, the logistics, and the client expectations of every market we work in.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA SECTION ── -->
+<section id="cta">
+  <div class="cta-bg-text">RESINCRAFT</div>
+  <div class="cta-content reveal">
+    <div class="label" style="margin-bottom:20px" data-i18n="cta.banner_label">Ready to Start?</div>
+    <h2 class="cta-h2">
+      <span data-i18n="cta.banner_h1">LET'S BUILD</span><br/>
+      <span data-i18n="cta.banner_h2">SOMETHING</span><br/>
+      <span class="gold" data-i18n="cta.banner_h3">REMARKABLE.</span>
+    </h2>
+    <p class="cta-sub" data-i18n="cta.banner_sub">
+      Tell us about your project. We'll provide a tailored technical proposal
+      and free site assessment within 24 hours.
+    </p>
+    <div class="cta-buttons">
+      <a href="#contact" class="btn-primary" style="font-size:13px;padding:18px 52px;" data-i18n="cta.free_quote">Request a Free Quote</a>
+      <a href="tel:+25377515323" class="btn-secondary"><span data-i18n="cta.call_us">Call Us</span> <span>→</span></a>
+    </div>
+    <p class="cta-note" data-i18n="cta.banner_note">No commitment required · Djibouti · East Africa · MENA</p>
+  </div>
+</section>
+
+<!-- ── QUOTE FORM ── -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="reveal-left">
+      <div class="label" style="margin-bottom:16px" data-i18n="sec.contact_label">08 / Get a Quote</div>
+      <h2 class="contact-info-title">
+        <span data-i18n="contact.h1">START YOUR</span><br/>
+        <span class="gold" data-i18n="contact.h2">PROJECT</span><br/>
+        <span data-i18n="contact.h3">TODAY.</span>
+      </h2>
+      <p class="contact-info-body" data-i18n="contact.body">
+        Fill in the form and our technical team will respond within 24 hours
+        with a scoping call, site assessment plan, and indicative cost.
+      </p>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8b98a" stroke-width="1.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div>
+          <div class="contact-detail-label" data-i18n="contact.hq_label">Headquarters</div>
+          <div class="contact-detail-val">Gabode 5, Djibouti City, Republic of Djibouti</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8b98a" stroke-width="1.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.27 10a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L10.09 15a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="contact-detail-label" data-i18n="contact.phone_label">Phone</div>
+          <div class="contact-detail-val">+253 77 515 323</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8b98a" stroke-width="1.5">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div>
+          <div class="contact-detail-label" data-i18n="contact.email_label">Email</div>
+          <div class="contact-detail-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="94fdfaf2fbd4e6f1e7fdfaf7e6f5f2e0e7e0e1f0fdfbe7bafaf1e0">[email&#160;protected]</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="reveal-right">
+      <div class="form-wrap">
+        <div class="form-steps" id="formSteps">
+          <div class="form-step active" id="fs0" data-i18n="form.step0">Project Info</div>
+          <div class="form-step" id="fs1" data-i18n="form.step1">Details</div>
+          <div class="form-step" id="fs2" data-i18n="form.step2">Confirm</div>
+        </div>
+        <div class="form-main" id="formMain">
+          <!-- Step 0 -->
+          <div id="step0">
+            <div class="form-grid">
+              <div>
+                <label class="form-label" for="fname" data-i18n="form.name">Full Name</label>
+                <input class="form-input" id="fname" type="text" placeholder="Ahmed Al-Rashid"/>
+              </div>
+              <div>
+                <label class="form-label" for="fcompany" data-i18n="form.company">Company / Organisation</label>
+                <input class="form-input" id="fcompany" type="text" placeholder="Al-Rashid Logistics"/>
+              </div>
+              <div>
+                <label class="form-label" for="femail" data-i18n="form.email">Email Address</label>
+                <input class="form-input" id="femail" type="email" placeholder="contact@company.com"/>
+              </div>
+              <div>
+                <label class="form-label" for="fphone" data-i18n="form.phone">Phone Number</label>
+                <input class="form-input" id="fphone" type="tel" placeholder="+253 77 000 000"/>
+              </div>
+              <div class="form-actions">
+                <span></span>
+                <button class="btn-submit" onclick="goStep(1)" data-i18n="form.next">Next Step →</button>
+              </div>
+            </div>
+          </div>
+          <!-- Step 1 -->
+          <div id="step1" style="display:none">
+            <div class="form-grid">
+              <div>
+                <label class="form-label" for="fservice" data-i18n="form.service">Service Required</label>
+                <select class="form-input" id="fservice">
+                  <option value="">Select service</option>
+                  <option>Industrial Epoxy Flooring</option>
+                  <option>Commercial Flooring</option>
+                  <option>Decorative Resin</option>
+                  <option>Concrete Repair & Prep</option>
+                  <option>Protective Coatings</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label" for="fsqm" data-i18n="form.area">Approximate Area (m²)</label>
+                <input class="form-input" id="fsqm" type="number" placeholder="e.g. 2000"/>
+              </div>
+              <div>
+                <label class="form-label" for="flocation" data-i18n="form.location">Project Location</label>
+                <input class="form-input" id="flocation" type="text" placeholder="Djibouti / Addis Ababa / Dubai…"/>
+              </div>
+              <div>
+                <label class="form-label" for="ftimeline" data-i18n="form.timeline">Timeline</label>
+                <select class="form-input" id="ftimeline">
+                  <option value="">Select timeline</option>
+                  <option>Urgent — within 1 month</option>
+                  <option>1–3 months</option>
+                  <option>3–6 months</option>
+                  <option>Planning phase</option>
+                </select>
+              </div>
+              <div class="form-full">
+                <label class="form-label" for="fmsg" data-i18n="form.description">Project Description</label>
+                <textarea class="form-input" id="fmsg" placeholder="Describe your project, substrate condition, any special requirements (chemical resistance, anti-static, decorative finish)…"></textarea>
+              </div>
+              <div class="form-actions">
+                <button class="btn-ghost" onclick="goStep(0)" data-i18n="form.back">← Back</button>
+                <button class="btn-submit" onclick="goStep(2)" data-i18n="form.review">Review →</button>
+              </div>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div id="step2" style="display:none">
+            <div id="summaryRows" style="background:var(--dark);border:1px solid var(--border);padding:24px;margin-bottom:24px"></div>
+            <div class="form-actions">
+              <button class="btn-ghost" onclick="goStep(1)" data-i18n="form.edit">← Edit</button>
+              <button class="btn-submit" onclick="submitForm()" data-i18n="form.submit">Submit Request ✓</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <div style="font-family:var(--ff-display);font-size:56px;color:var(--gold);letter-spacing:3px;margin-bottom:16px">REQUEST<br/>RECEIVED.</div>
+          <p style="font-size:15px;color:var(--muted);line-height:1.8;max-width:360px;margin:0 auto">Our technical team will contact you within 24 hours with a scoping call and site assessment plan.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">RESINCRAFT <span>STUDIOS</span></div>
+      <p class="footer-tagline">
+        Premium epoxy flooring and industrial coatings across East Africa and the Middle East.
+        Engineered for durability. Designed for excellence.
+      </p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">LI</a>
+        <a href="#" class="social-btn">IG</a>
+        <a href="#" class="social-btn">WA</a>
+        <a href="#" class="social-btn">YT</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title" data-i18n="footer.services">Services</div>
+      <a href="#" class="footer-link">Industrial Epoxy</a>
+      <a href="#" class="footer-link">Commercial Floors</a>
+      <a href="#" class="footer-link">Decorative Resin</a>
+      <a href="#" class="footer-link">Concrete Repair</a>
+      <a href="#" class="footer-link">Protective Coatings</a>
+    </div>
+    <div>
+      <div class="footer-col-title" data-i18n="footer.company">Company</div>
+      <a href="about.html" class="footer-link">About Us</a>
+      <a href="#projects" class="footer-link">Projects</a>
+      <a href="process.html" class="footer-link">Process</a>
+      <a href="services.html" class="footer-link">Services</a>
+      <a href="#" class="footer-link">Careers</a>
+    </div>
+    <div>
+      <div class="footer-col-title" data-i18n="footer.contact">Contact</div>
+      <a href="https://maps.google.com/?q=Gabode+5+Djibouti+City" target="_blank" rel="noopener" class="footer-link">Gabode 5, Djibouti City</a>
+      <a href="tel:+25377515323" class="footer-link">+253 77 515 323</a>
+      <a href="/cdn-cgi/l/email-protection#f0999e969fb0829583999e938291968483848594999f83de9e9584" class="footer-link"><span class="__cf_email__" data-cfemail="7a13141c153a081f09131419081b1c0e090e0f1e13150954141f0e">[email&#160;protected]</span></a>
+      <a href="#contact" class="footer-link" style="color:var(--gold);margin-top:16px">→ Request a Quote</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Resincraft Studios. All rights reserved.</div>
+    <div class="footer-regions">
+      <span class="footer-region">Djibouti</span>
+      <span class="footer-region">Ethiopia</span>
+      <span class="footer-region">Kenya</span>
+      <span class="footer-region">Somalia</span>
+      <span class="footer-region">UAE</span>
+      <span class="footer-region">Saudi Arabia</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── LANGUAGE DROPDOWN + TRANSLATIONS ──────────────────
+const I18N = {
+  EN: {
+    'nav.services':'Services','nav.projects':'Projects','nav.process':'Process','nav.about':'About',
+    'lang.en':'English','lang.fr':'Français','lang.ar':'العربية','lang.so':'Somali',
+    'cta.quote':'Request a Quote','cta.view_projects':'View Projects','cta.view_all':'View All Projects',
+    'cta.free_quote':'Request a Free Quote','cta.call_us':'Call Us',
+    'hero.brand_studios_label':'STUDIOS','hero.eyebrow':'Djibouti · East Africa · Middle East',
+    'hero.h1_l1':'BUILT','hero.h1_l2':'FLAWLESS.','hero.h1_l3':'SEALED','hero.h1_l4':'FOREVER.',
+    'hero.sub':"Industrial and decorative epoxy flooring engineered for the projects that can't afford imperfection. From port warehouses to luxury residences — zero defects, every time.",
+    'hero.scroll':'Scroll',
+    'stat.lifespan':'System Lifespan','stat.materials':'Certified Materials','stat.defect':'Defect Policy',
+    'trust.lifespan_sub':'With Standard Upkeep','trust.cure':'Cure Time','trust.cure_sub':'Back in Service Fast',
+    'trust.materials_sub':'European-Grade Systems','trust.defect_sub':'Every m² Inspected',
+    'sec.services_label':'02 / Our Services','sec.services_h1':'EVERY SURFACE.','sec.services_h2':'EVERY','sec.services_h3':'SCALE.',
+    'sec.services_body':'From 50 m² boutique showrooms to 20,000 m² port warehouses, Resincraft Studios delivers systems engineered to perform under the most demanding conditions — chemically, mechanically, and aesthetically.',
+    'svc.industrial':'INDUSTRIAL EPOXY','svc.commercial':'COMMERCIAL FLOORING','svc.decorative':'DECORATIVE RESIN','svc.concrete':'CONCRETE REPAIR','svc.concrete_tag':'On Site · Crack Repair','svc.industrial_tag':'On Site · Live Install','svc.commercial_tag':'Project · Reception Floor','svc.decorative_tag':'Residence · Marble Effect',
+    'sec.projects_label':'03 / Featured Projects','sec.projects_h1':'THE PROOF IS','sec.projects_h2':'IN THE FLOOR.',
+    'sec.transform_label':'04 / Transformation','sec.transform_h1':'CRACKED &','sec.transform_h2':'DAMAGED.','sec.transform_h3':'THEN SEALED','sec.transform_h4':'FLAWLESS.',
+    'sec.transform_body':'This is a real warehouse scenario — cracked concrete, oil stains, years of heavy use. Drag the slider to see what happens after proper surface prep and a full epoxy system. The job takes a few days. The result lasts well over a decade.',
+    'transform.lifespan':'LIFESPAN','transform.iso_label':'CERTIFIED MATERIALS','transform.before':'BEFORE','transform.after':'AFTER',
+    'sec.process_label':'05 / Our Process','sec.process_h1':'SIX STEPS.','sec.process_h2':'ONE STANDARD.','sec.process_h3':'EXCELLENCE.',
+    'step.01':'SITE ASSESSMENT','step.02':'SURFACE PREP','step.03':'PRIMER COAT','step.04':'SYSTEM INSTALL','step.05':'TOPCOAT & SEAL','step.06':'QUALITY SIGN-OFF',
+    'sec.why_label':'06 / Why Resincraft','sec.why_h1':'FIVE REASONS','sec.why_h2':'THE BEST','sec.why_h3':'CHOOSE US.',
+    'why.01':'ENGINEERED DURABILITY','why.02':'MILLIMETRE PRECISION','why.03':'PREMIUM MATERIALS ONLY','why.04':'ZERO-DEFECT EXECUTION','why.05':'REGIONAL SCALE, GLOBAL STANDARDS',
+    'cta.banner_label':'Ready to Start?','cta.banner_h1':"LET'S BUILD",'cta.banner_h2':'SOMETHING','cta.banner_h3':'REMARKABLE.',
+    'cta.banner_sub':"Tell us about your project. We'll provide a tailored technical proposal and free site assessment within 24 hours.",
+    'cta.banner_note':'No commitment required · Djibouti · East Africa · MENA',
+    'sec.contact_label':'08 / Get a Quote','contact.h1':'START YOUR','contact.h2':'PROJECT','contact.h3':'TODAY.',
+    'contact.body':'Fill in the form and our technical team will respond within 24 hours with a scoping call, site assessment plan, and indicative cost.',
+    'contact.hq_label':'Headquarters','contact.phone_label':'Phone','contact.email_label':'Email',
+    'form.step0':'Project Info','form.step1':'Details','form.step2':'Confirm',
+    'form.name':'Full Name','form.company':'Company / Organisation','form.email':'Email Address','form.phone':'Phone Number',
+    'form.service':'Service Required','form.area':'Approximate Area (m²)','form.location':'Project Location','form.timeline':'Timeline','form.description':'Project Description',
+    'form.next':'Next Step →','form.back':'← Back','form.review':'Review →','form.edit':'← Edit','form.submit':'Submit Request ✓',
+    'footer.services':'Services','footer.company':'Company','footer.contact':'Contact'
+  },
+  FR: {
+    'nav.services':'Services','nav.projects':'Projets','nav.process':'Processus','nav.about':'À propos',
+    'lang.en':'English','lang.fr':'Français','lang.ar':'العربية','lang.so':'Somali',
+    'cta.quote':'Demander un devis','cta.view_projects':'Voir les projets','cta.view_all':'Voir tous les projets',
+    'cta.free_quote':'Demander un devis gratuit','cta.call_us':'Appelez-nous',
+    'hero.brand_studios_label':'STUDIOS','hero.eyebrow':'Djibouti · Afrique de l\'Est · Moyen-Orient',
+    'hero.h1_l1':'CONÇU','hero.h1_l2':'IMPECCABLE.','hero.h1_l3':'SCELLÉ','hero.h1_l4':'POUR TOUJOURS.',
+    'hero.sub':"Revêtements époxy industriels et décoratifs conçus pour les projets qui ne tolèrent aucune imperfection. Des entrepôts portuaires aux résidences de luxe — zéro défaut, à chaque fois.",
+    'hero.scroll':'Faire défiler',
+    'stat.lifespan':'Durée de vie','stat.materials':'Matériaux certifiés','stat.defect':'Zéro défaut',
+    'trust.lifespan_sub':'Avec entretien standard','trust.cure':'Temps de séchage','trust.cure_sub':'Remise en service rapide',
+    'trust.materials_sub':'Systèmes de qualité européenne','trust.defect_sub':'Chaque m² inspecté',
+    'sec.services_label':'02 / Nos Services','sec.services_h1':'CHAQUE SURFACE.','sec.services_h2':'CHAQUE','sec.services_h3':'ÉCHELLE.',
+    'sec.services_body':"De showrooms de 50 m² aux entrepôts portuaires de 20 000 m², Resincraft Studios livre des systèmes conçus pour performer dans les conditions les plus exigeantes — chimiquement, mécaniquement et esthétiquement.",
+    'svc.industrial':'ÉPOXY INDUSTRIEL','svc.commercial':'SOLS COMMERCIAUX','svc.decorative':'RÉSINE DÉCORATIVE','svc.concrete':'RÉPARATION BÉTON','svc.concrete_tag':'Sur Site · Réparation Fissure','svc.industrial_tag':'Sur Site · Pose en Cours','svc.commercial_tag':'Projet · Sol de Réception','svc.decorative_tag':'Résidence · Effet Marbre',
+    'sec.projects_label':'03 / Projets phares','sec.projects_h1':'LA PREUVE EST','sec.projects_h2':'DANS LE SOL.',
+    'sec.transform_label':'04 / Transformation','sec.transform_h1':'FISSURÉ &','sec.transform_h2':'ENDOMMAGÉ.','sec.transform_h3':'PUIS SCELLÉ','sec.transform_h4':'IMPECCABLE.',
+    'sec.transform_body':"Un véritable scénario d'entrepôt — béton fissuré, taches d'huile, années d'usage intensif. Glissez le curseur pour voir le résultat après préparation de surface et système époxy complet. Le chantier prend quelques jours. Le résultat dure plus d'une décennie.",
+    'transform.lifespan':'DURÉE DE VIE','transform.iso_label':'MATÉRIAUX CERTIFIÉS','transform.before':'AVANT','transform.after':'APRÈS',
+    'sec.process_label':'05 / Notre Processus','sec.process_h1':'SIX ÉTAPES.','sec.process_h2':'UN STANDARD.','sec.process_h3':'EXCELLENCE.',
+    'step.01':'ÉVALUATION DU SITE','step.02':'PRÉPARATION SURFACE','step.03':'COUCHE PRIMAIRE','step.04':'POSE DU SYSTÈME','step.05':'COUCHE DE FINITION','step.06':'CONTRÔLE QUALITÉ',
+    'sec.why_label':'06 / Pourquoi Resincraft','sec.why_h1':'CINQ RAISONS','sec.why_h2':'POUR LESQUELLES','sec.why_h3':'NOUS CHOISIR.',
+    'why.01':'DURABILITÉ MAÎTRISÉE','why.02':'PRÉCISION AU MILLIMÈTRE','why.03':'MATÉRIAUX PREMIUM','why.04':'EXÉCUTION SANS DÉFAUT','why.05':'ÉCHELLE RÉGIONALE, NORMES MONDIALES',
+    'cta.banner_label':'Prêt à commencer ?','cta.banner_h1':'CONSTRUISONS','cta.banner_h2':'QUELQUE CHOSE','cta.banner_h3':'REMARQUABLE.',
+    'cta.banner_sub':"Parlez-nous de votre projet. Nous fournirons une proposition technique sur mesure et une évaluation gratuite du site sous 24 heures.",
+    'cta.banner_note':'Sans engagement · Djibouti · Afrique de l\'Est · MENA',
+    'sec.contact_label':'08 / Obtenir un devis','contact.h1':'COMMENCEZ','contact.h2':'VOTRE PROJET','contact.h3':'AUJOURD\'HUI.',
+    'contact.body':"Remplissez le formulaire et notre équipe technique vous répondra sous 24 heures avec un appel de cadrage, un plan d'évaluation et un coût indicatif.",
+    'contact.hq_label':'Siège social','contact.phone_label':'Téléphone','contact.email_label':'E-mail',
+    'form.step0':'Infos projet','form.step1':'Détails','form.step2':'Confirmer',
+    'form.name':'Nom complet','form.company':'Entreprise / Organisation','form.email':'Adresse e-mail','form.phone':'Numéro de téléphone',
+    'form.service':'Service requis','form.area':'Surface approximative (m²)','form.location':'Lieu du projet','form.timeline':'Délais','form.description':'Description du projet',
+    'form.next':'Étape suivante →','form.back':'← Retour','form.review':'Vérifier →','form.edit':'← Modifier','form.submit':'Envoyer la demande ✓',
+    'footer.services':'Services','footer.company':'Entreprise','footer.contact':'Contact'
+  },
+  AR: {
+    'nav.services':'الخدمات','nav.projects':'المشاريع','nav.process':'العملية','nav.about':'من نحن',
+    'lang.en':'English','lang.fr':'Français','lang.ar':'العربية','lang.so':'Somali',
+    'cta.quote':'طلب عرض سعر','cta.view_projects':'عرض المشاريع','cta.view_all':'عرض كل المشاريع',
+    'cta.free_quote':'طلب عرض سعر مجاني','cta.call_us':'اتصل بنا',
+    'hero.brand_studios_label':'STUDIOS','hero.eyebrow':'جيبوتي · شرق أفريقيا · الشرق الأوسط',
+    'hero.h1_l1':'مَبنيّ','hero.h1_l2':'بلا عيوب.','hero.h1_l3':'مختوم','hero.h1_l4':'إلى الأبد.',
+    'hero.sub':'أرضيات إيبوكسي صناعية وزخرفية مصممة هندسياً للمشاريع التي لا تتحمل النقصان. من مستودعات الموانئ إلى المساكن الفاخرة — صفر عيوب، في كل مرة.',
+    'hero.scroll':'مرر',
+    'stat.lifespan':'العمر الافتراضي','stat.materials':'مواد معتمدة','stat.defect':'صفر عيوب',
+    'trust.lifespan_sub':'مع الصيانة الاعتيادية','trust.cure':'وقت التصلب','trust.cure_sub':'عودة سريعة للخدمة',
+    'trust.materials_sub':'أنظمة بجودة أوروبية','trust.defect_sub':'كل متر مربع مفحوص',
+    'sec.services_label':'02 / خدماتنا','sec.services_h1':'كل سطح.','sec.services_h2':'كل','sec.services_h3':'نطاق.',
+    'sec.services_body':'من صالات عرض بمساحة 50 م² إلى مستودعات موانئ بمساحة 20,000 م²، تقدم Resincraft Studios أنظمة مصممة هندسياً لتؤدي في أصعب الظروف — كيميائياً، ميكانيكياً، وجمالياً.',
+    'svc.industrial':'إيبوكسي صناعي','svc.commercial':'أرضيات تجارية','svc.decorative':'راتنج زخرفي','svc.concrete':'إصلاح الخرسانة','svc.concrete_tag':'في الموقع · إصلاح التشققات','svc.industrial_tag':'في الموقع · تركيب مباشر','svc.commercial_tag':'مشروع · أرضية استقبال','svc.decorative_tag':'سكن · تأثير رخام',
+    'sec.projects_label':'03 / مشاريع مختارة','sec.projects_h1':'الدليل','sec.projects_h2':'في الأرض.',
+    'sec.transform_label':'04 / التحول','sec.transform_h1':'متشقق و','sec.transform_h2':'متضرر.','sec.transform_h3':'ثم مختوم','sec.transform_h4':'بلا عيوب.',
+    'sec.transform_body':'هذا سيناريو حقيقي لمستودع — خرسانة متشققة، بقع زيت، سنوات من الاستخدام المكثف. اسحب الشريط لترى النتيجة بعد التحضير الصحيح للسطح ونظام إيبوكسي متكامل. العمل يستغرق بضعة أيام. النتيجة تدوم أكثر من عقد.',
+    'transform.lifespan':'العمر الافتراضي','transform.iso_label':'مواد معتمدة','transform.before':'قبل','transform.after':'بعد',
+    'sec.process_label':'05 / عمليتنا','sec.process_h1':'ست خطوات.','sec.process_h2':'معيار واحد.','sec.process_h3':'التميز.',
+    'step.01':'تقييم الموقع','step.02':'تحضير السطح','step.03':'الطبقة الأساسية','step.04':'تركيب النظام','step.05':'الطبقة النهائية','step.06':'فحص الجودة',
+    'sec.why_label':'06 / لماذا Resincraft','sec.why_h1':'خمسة أسباب','sec.why_h2':'لاختيارنا','sec.why_h3':'من قبل الأفضل.',
+    'why.01':'متانة هندسية','why.02':'دقة بالمليمتر','why.03':'مواد ممتازة فقط','why.04':'تنفيذ بلا عيوب','why.05':'نطاق إقليمي، معايير عالمية',
+    'cta.banner_label':'جاهز للبدء؟','cta.banner_h1':'لنبنِ','cta.banner_h2':'شيئاً','cta.banner_h3':'استثنائياً.',
+    'cta.banner_sub':'أخبرنا عن مشروعك. سنقدم اقتراحاً تقنياً مخصصاً وتقييماً مجانياً للموقع خلال 24 ساعة.',
+    'cta.banner_note':'بدون التزام · جيبوتي · شرق أفريقيا · الشرق الأوسط وشمال أفريقيا',
+    'sec.contact_label':'08 / احصل على عرض','contact.h1':'ابدأ','contact.h2':'مشروعك','contact.h3':'اليوم.',
+    'contact.body':'املأ النموذج وسيقوم فريقنا الفني بالرد خلال 24 ساعة بمكالمة تحديد النطاق وخطة تقييم الموقع والتكلفة الإرشادية.',
+    'contact.hq_label':'المقر الرئيسي','contact.phone_label':'الهاتف','contact.email_label':'البريد الإلكتروني',
+    'form.step0':'بيانات المشروع','form.step1':'التفاصيل','form.step2':'التأكيد',
+    'form.name':'الاسم الكامل','form.company':'الشركة / المؤسسة','form.email':'البريد الإلكتروني','form.phone':'رقم الهاتف',
+    'form.service':'الخدمة المطلوبة','form.area':'المساحة التقريبية (م²)','form.location':'موقع المشروع','form.timeline':'الجدول الزمني','form.description':'وصف المشروع',
+    'form.next':'الخطوة التالية ←','form.back':'→ رجوع','form.review':'مراجعة ←','form.edit':'→ تعديل','form.submit':'إرسال الطلب ✓',
+    'footer.services':'الخدمات','footer.company':'الشركة','footer.contact':'تواصل معنا'
+  },
+  SO: {
+    'nav.services':'Adeegyada','nav.projects':'Mashruucyada','nav.process':'Habka','nav.about':'Naga',
+    'lang.en':'English','lang.fr':'Français','lang.ar':'العربية','lang.so':'Somali',
+    'cta.quote':'Codso Qiime','cta.view_projects':'Eeg Mashruucyada','cta.view_all':'Eeg Dhammaan Mashruucyada',
+    'cta.free_quote':'Codso Qiime Bilaash ah','cta.call_us':'Naga Soo Wac',
+    'hero.brand_studios_label':'STUDIOS','hero.eyebrow':'Jabuuti · Bariga Afrika · Bariga Dhexe',
+    'hero.h1_l1':'LA DHISAY','hero.h1_l2':'CAYB LA\'AAN.','hero.h1_l3':'LA XIRAY','hero.h1_l4':'WEYLI.',
+    'hero.sub':"Dabaqyo epoxy oo warshadeed iyo qurxin ah oo loogu talagalay mashruucyada aan u oggolaan karin cilladaha. Bakhaarrada dekedaha ilaa guryaha raaxada — cayb la'aan, mar walba.",
+    'hero.scroll':'Hoos U Soco',
+    'stat.lifespan':'Cimriga Nidaamka','stat.materials':'Walxo Shahaado Leh','stat.defect':'Cayb La\'aan',
+    'trust.lifespan_sub':'Daryeel Caadi ah','trust.cure':'Wakhtiga Engegida','trust.cure_sub':'Si Dhakhso ah u Adeegsi Karaya',
+    'trust.materials_sub':'Nidaamyo Tayo Yurub leh','trust.defect_sub':'Mitir kasta waa la baari',
+    'sec.services_label':'02 / Adeegyadayada','sec.services_h1':'DUSHA KASTA.','sec.services_h2':'CABBIRKA','sec.services_h3':'KASTA.',
+    'sec.services_body':"Laga bilaabo bandhig 50 m² ilaa bakhaar dekeda 20,000 m², Resincraft Studios waxay bixisaa nidaamyo loogu talagalay inay ka shaqeeyaan duruufaha ugu adag — kiimikal, makanik, iyo qurux ahaan.",
+    'svc.industrial':'EPOXY WARSHADEED','svc.commercial':'DABAQYO GANACSI','svc.decorative':'RESIN QURXIN','svc.concrete':'DAYACTIRKA KONKARIIDH','svc.concrete_tag':'Goobta · Hagaajinta Dildilaaca','svc.industrial_tag':'Goobta · Rakibaad Toos ah','svc.commercial_tag':'Mashruuc · Sagxadda Soo Dhaweynta','svc.decorative_tag':'Guri · Sida Marmar',
+    'sec.projects_label':'03 / Mashruucyo Caan ah','sec.projects_h1':'CADAYNTA WAY','sec.projects_h2':'KU JIRTAA SAGXADDA.',
+    'sec.transform_label':'04 / Isbeddel','sec.transform_h1':'JABAY &','sec.transform_h2':'BURBURAY.','sec.transform_h3':'KADIB LA XIRAY','sec.transform_h4':'CAYB LA\'AAN.',
+    'sec.transform_body':"Tan waa xaalad bakhaar dhab ah — konkariidh jabay, dhibco saliid, sannado adeegsi culus. Jiid sliderka si aad u aragto natiijada ka dib diyaar-garowga sagxadda iyo nidaam epoxy buuxa. Shaqada waxay qaadanaysaa dhowr maalmood. Natiijaduna way ka badan tahay toban sano.",
+    'transform.lifespan':'CIMRIGA','transform.iso_label':'WALXO SHAHAADO LEH','transform.before':'KAHOR','transform.after':'KADIB',
+    'sec.process_label':'05 / Habkayaga','sec.process_h1':'LIX TALLAABO.','sec.process_h2':'HEER KEN.','sec.process_h3':'HEER SARE.',
+    'step.01':'QIIMEYNTA GOOBTA','step.02':'DIYAARINTA DUSHA','step.03':'DABAQA HOOSE','step.04':'RAKIBIDDA NIDAAMKA','step.05':'DABAQA SARE & XIRIDDA','step.06':'XAQIIJINTA TAYADA',
+    'sec.why_label':'06 / Maxay Resincraft','sec.why_h1':'SHAN SABAB','sec.why_h2':'OO KUWA UGU FIICAN','sec.why_h3':'NOO DOORTAAN.',
+    'why.01':'ADKAYSI HABEYSAN','why.02':'SAXSANAAN MILIMITAR','why.03':'WALXO TAYO SARE KALIYA','why.04':'FULIN CAYB LA\'AAN','why.05':'BAAXAD GOBOLEED, HEERAR CAALAMI AH',
+    'cta.banner_label':'Diyaar Ma U Tahay?','cta.banner_h1':'AAN DHISNO','cta.banner_h2':'WAX','cta.banner_h3':'CAJIIB AH.',
+    'cta.banner_sub':"Noo sheeg mashruucaaga. Waxaan ku siin doonaa soo jeedin farsamo oo gaar ah iyo qiimeyn bilaash ah 24 saac gudaheed.",
+    'cta.banner_note':"Ballan-qaad ma laha · Jabuuti · Bariga Afrika · MENA",
+    'sec.contact_label':'08 / Hel Qiime','contact.h1':'BILOW','contact.h2':'MASHRUUCAAGA','contact.h3':'MAANTA.',
+    'contact.body':"Buuxi foomka oo kooxdayada farsamadu waxay kaaga jawaabi doonaan 24 saac gudaheed wicid hordhac ah, qorshe qiimeyn goobta iyo qiime tilmaan ah.",
+    'contact.hq_label':'Xarunta Madaxda','contact.phone_label':'Telefoon','contact.email_label':'Iimayl',
+    'form.step0':'Macluumaadka Mashruuca','form.step1':'Faahfaahin','form.step2':'Xaqiiji',
+    'form.name':'Magaca Buuxa','form.company':'Shirkadda / Hay\'adda','form.email':'Cinwaanka Iimaylka','form.phone':'Lambarka Telefoonka',
+    'form.service':'Adeegga Loo Baahan Yahay','form.area':'Cabbirka Qiyaastii (m²)','form.location':'Goobta Mashruuca','form.timeline':'Wakhtiga','form.description':'Sharaxaadda Mashruuca',
+    'form.next':'Tallaabada Xigta →','form.back':'← Dib u Noqo','form.review':'Dib u Eeg →','form.edit':'← Wax Ka Beddel','form.submit':'Dir Codsiga ✓',
+    'footer.services':'Adeegyada','footer.company':'Shirkadda','footer.contact':'Xiriir'
+  }
+};
+
+function applyLang(lang) {
+  const dict = I18N[lang] || I18N.EN;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (dict[key] != null) el.textContent = dict[key];
+  });
+  if (lang === 'AR') {
+    document.documentElement.setAttribute('dir', 'rtl');
+    document.documentElement.setAttribute('lang', 'ar');
+  } else {
+    document.documentElement.setAttribute('dir', 'ltr');
+    document.documentElement.setAttribute('lang', lang === 'FR' ? 'fr' : lang === 'SO' ? 'so' : 'en');
+  }
+}
+
+(function() {
+  const wrap = document.getElementById('langWrap');
+  const btn  = document.getElementById('langBtn');
+  const opts = document.querySelectorAll('.lang-opt');
+  if (!wrap) return;
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    wrap.classList.toggle('open');
+  });
+  document.addEventListener('click', () => wrap.classList.remove('open'));
+  opts.forEach(opt => {
+    opt.addEventListener('click', e => {
+      e.stopPropagation();
+      opts.forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+      const lang = opt.dataset.lang;
+      btn.innerHTML = lang + ' <span class="lang-arrow">▾</span>';
+      wrap.classList.remove('open');
+      applyLang(lang);
+      try { localStorage.setItem('resincraft_lang', lang); } catch(e){}
+    });
+  });
+  // Restore last lang
+  try {
+    const saved = localStorage.getItem('resincraft_lang');
+    if (saved && I18N[saved]) {
+      opts.forEach(o => o.classList.toggle('active', o.dataset.lang === saved));
+      btn.innerHTML = saved + ' <span class="lang-arrow">▾</span>';
+      applyLang(saved);
+    }
+  } catch(e){}
+})();
+
+// ── NAV SCROLL ─────────────────────────────────────────
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── INTERSECTION OBSERVER (scroll reveals) ─────────────
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -48px 0px' });
+revealEls.forEach(el => obs.observe(el));
+
+// ── BEFORE/AFTER SLIDER ────────────────────────────────
+(function() {
+  const frame = document.getElementById('baFrame');
+  if (!frame) return;
+  const afterWrap = document.getElementById('baAfterWrap');
+  const divider   = document.getElementById('baDivider');
+  const handle    = document.getElementById('baHandle');
+  const afterLabel = frame.querySelector('.ba-label.after');
+
+  let dragging = false;
+
+  function setPosition(x) {
+    const rect = frame.getBoundingClientRect();
+    let pct = (x - rect.left) / rect.width;
+    pct = Math.max(0.05, Math.min(0.95, pct));
+    const pctPx = (pct * 100).toFixed(2) + '%';
+    divider.style.left = pctPx;
+    handle.style.left  = pctPx;
+    afterWrap.style.width = (100 - pct * 100).toFixed(2) + '%';
+    afterWrap.style.left  = pctPx;
+    if (afterLabel) afterLabel.style.right = 'auto', afterLabel.style.left = `calc(${pctPx} + 12px)`;
+  }
+
+  frame.addEventListener('pointerdown', e => {
+    dragging = true;
+    frame.setPointerCapture(e.pointerId);
+    setPosition(e.clientX);
+  });
+  frame.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    setPosition(e.clientX);
+  });
+  frame.addEventListener('pointerup',   () => { dragging = false; });
+  frame.addEventListener('pointercancel', () => { dragging = false; });
+})();
+
+// ── FORM STEPPER ───────────────────────────────────────
+let currentStep = 0;
+function goStep(n) {
+  // hide all steps
+  [0,1,2].forEach(i => {
+    document.getElementById('step'+i).style.display = 'none';
+    const fs = document.getElementById('fs'+i);
+    fs.classList.remove('active','done');
+    if (i < n) fs.classList.add('done');
+    if (i === n) fs.classList.add('active');
+  });
+  // if step 2: populate summary
+  if (n === 2) populateSummary();
+  document.getElementById('step'+n).style.display = 'block';
+  currentStep = n;
+}
+function populateSummary() {
+  const rows = [
+    ['Name', document.getElementById('fname').value || '—'],
+    ['Company', document.getElementById('fcompany').value || '—'],
+    ['Email', document.getElementById('femail').value || '—'],
+    ['Phone', document.getElementById('fphone').value || '—'],
+    ['Service', document.getElementById('fservice').value || '—'],
+    ['Area', document.getElementById('fsqm').value ? document.getElementById('fsqm').value + ' m²' : '—'],
+    ['Location', document.getElementById('flocation').value || '—'],
+    ['Timeline', document.getElementById('ftimeline').value || '—'],
+  ];
+  const wrap = document.getElementById('summaryRows');
+  wrap.innerHTML = rows.map(([k,v]) => `
+    <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">
+      <span style="font-family:var(--ff-mono);font-size:10px;color:var(--subtle);letter-spacing:2px;text-transform:uppercase">${k}</span>
+      <span style="font-size:13px;color:var(--cream)">${v}</span>
+    </div>
+  `).join('');
+}
+function submitForm() {
+  document.getElementById('formMain').style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+  document.getElementById('formSteps').style.display = 'none';
+}
+</script>
+</body>
+</html>
